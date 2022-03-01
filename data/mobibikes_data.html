@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Generator" content="Drupal 7 (http://drupal.org)" />
+<link rel="canonical" href="/en/system-data" />
+<link rel="shortlink" href="/en/node/271" />
+<link rel="shortcut icon" href="https://www.mobibikes.ca/sites/all/themes/smoove_bootstrap/favicon.ico" type="image/vnd.microsoft.icon" />
+<meta name="description" content="Vancouver Bike Share - Mobi by ShawGo. Community public bike share program, servicing Vancouver." />
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1723278967977005&ev=PageView&noscript=1"/></noscript>  <title>System data | Vancouver Bike Share | Mobi</title>
+  <style>
+@import url("https://www.mobibikes.ca/modules/system/system.base.css?r7fwxi");
+</style>
+<style>
+@import url("https://www.mobibikes.ca/sites/all/modules/calendar/css/calendar_multiday.css?r7fwxi");
+@import url("https://www.mobibikes.ca/sites/all/modules/contrib/date/date_api/date.css?r7fwxi");
+@import url("https://www.mobibikes.ca/sites/all/modules/contrib/date/date_popup/themes/datepicker.1.7.css?r7fwxi");
+@import url("https://www.mobibikes.ca/modules/field/theme/field.css?r7fwxi");
+@import url("https://www.mobibikes.ca/modules/node/node.css?r7fwxi");
+@import url("https://www.mobibikes.ca/sites/all/modules/contrib/views/css/views.css?r7fwxi");
+@import url("https://www.mobibikes.ca/sites/all/modules/contrib/ckeditor/css/ckeditor.css?r7fwxi");
+</style>
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Maven+Pro:700|Montserrat:400,700|Lobster+Two:700italic&amp;r7fwxi" media="all" />
+<style>
+@import url("https://www.mobibikes.ca/sites/all/modules/contrib/colorbox/styles/default/colorbox_style.css?r7fwxi");
+@import url("https://www.mobibikes.ca/sites/all/modules/contrib/ctools/css/ctools.css?r7fwxi");
+@import url("https://www.mobibikes.ca/sites/all/libraries/fancybox/source/jquery.fancybox.css?r7fwxi");
+@import url("https://www.mobibikes.ca/sites/all/modules/panels/css/panels.css?r7fwxi");
+</style>
+<link type="text/css" rel="stylesheet" href="https://www.mobibikes.ca/sites/all/modules/popup/popup.css?r7fwxi" media="all" />
+<link type="text/css" rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.0.2/css/bootstrap.css" media="all" />
+<style>
+@import url("https://www.mobibikes.ca/sites/all/themes/bootstrap/css/3.0.2/overrides.min.css?r7fwxi");
+@import url("https://www.mobibikes.ca/sites/all/themes/smoove_bootstrap/css/style.css?r7fwxi");
+@import url("https://www.mobibikes.ca/sites/all/themes/smoove_bootstrap/css/responsive.css?r7fwxi");
+@import url("https://www.mobibikes.ca/sites/all/themes/smoove_bootstrap/fonts/Gotham.css?r7fwxi");
+</style>
+  <!-- HTML5 element support for IE6-8 -->
+  <!--[if lt IE 9]>
+    <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script defer="defer" src="https://www.mobibikes.ca/sites/default/files/google_tag/google_tag_manager/google_tag.script.js?r7fwxi"></script>
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script>window.jQuery || document.write("<script src='/sites/all/modules/contrib/jquery_update/replace/jquery/1.10/jquery.min.js'>\x3C/script>")</script>
+<script src="https://www.mobibikes.ca/misc/jquery-extend-3.4.0.js?v=1.10.2"></script>
+<script src="https://www.mobibikes.ca/misc/jquery-html-prefilter-3.5.0-backport.js?v=1.10.2"></script>
+<script src="https://www.mobibikes.ca/misc/jquery.once.js?v=1.2"></script>
+<script src="https://www.mobibikes.ca/misc/drupal.js?r7fwxi"></script>
+<script src="//cdn.jsdelivr.net/bootstrap/3.0.2/js/bootstrap.js"></script>
+<script src="https://www.mobibikes.ca/sites/all/libraries/colorbox/jquery.colorbox-min.js?r7fwxi"></script>
+<script src="https://www.mobibikes.ca/sites/all/modules/contrib/colorbox/js/colorbox.js?r7fwxi"></script>
+<script src="https://www.mobibikes.ca/sites/all/modules/contrib/colorbox/styles/default/colorbox_style.js?r7fwxi"></script>
+<script src="https://js.stripe.com/v3"></script>
+<script src="https://www.mobibikes.ca/sites/all/modules/contrib/fancybox/fancybox.js?r7fwxi"></script>
+<script src="https://www.mobibikes.ca/sites/all/libraries/fancybox/source/jquery.fancybox.pack.js?r7fwxi"></script>
+<script src="https://www.mobibikes.ca/sites/all/modules/popup/popup.js?r7fwxi"></script>
+<script src="https://www.mobibikes.ca/sites/all/themes/smoove_bootstrap/js/jquery.bxslider.min.js?r7fwxi"></script>
+<script src="https://www.mobibikes.ca/sites/all/themes/smoove_bootstrap/js/masonry.min.js?r7fwxi"></script>
+<script src="https://www.mobibikes.ca/sites/all/themes/smoove_bootstrap/js/imagesloaded.pkgd.min.js?r7fwxi"></script>
+<script src="https://www.mobibikes.ca/sites/all/themes/smoove_bootstrap/js/script.js?r7fwxi"></script>
+<script src="https://www.mobibikes.ca/sites/default/files/facebook_tracking_pixel/fb_tkpx.1723278967977005.js?r7fwxi"></script>
+<script>jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"en\/","setHasJsCookie":0,"ajaxPageState":{"theme":"smoove_bootstrap","theme_token":"VYtbwFLr2z9kuQPoaXoIctE54SII9jP_PwQfECARM58","js":{"sites\/all\/themes\/bootstrap\/js\/bootstrap.js":1,"https:\/\/www.mobibikes.ca\/sites\/default\/files\/google_tag\/google_tag_manager\/google_tag.script.js":1,"\/\/code.jquery.com\/jquery-1.10.2.min.js":1,"0":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery-html-prefilter-3.5.0-backport.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"\/\/cdn.jsdelivr.net\/bootstrap\/3.0.2\/js\/bootstrap.js":1,"sites\/all\/libraries\/colorbox\/jquery.colorbox-min.js":1,"sites\/all\/modules\/contrib\/colorbox\/js\/colorbox.js":1,"sites\/all\/modules\/contrib\/colorbox\/styles\/default\/colorbox_style.js":1,"https:\/\/js.stripe.com\/v3":1,"sites\/all\/modules\/contrib\/fancybox\/fancybox.js":1,"sites\/all\/libraries\/fancybox\/source\/jquery.fancybox.pack.js":1,"sites\/all\/modules\/popup\/popup.js":1,"sites\/all\/themes\/smoove_bootstrap\/js\/jquery.bxslider.min.js":1,"sites\/all\/themes\/smoove_bootstrap\/js\/masonry.min.js":1,"sites\/all\/themes\/smoove_bootstrap\/js\/imagesloaded.pkgd.min.js":1,"sites\/all\/themes\/smoove_bootstrap\/js\/script.js":1,"public:\/\/facebook_tracking_pixel\/fb_tkpx.1723278967977005.js":1},"css":{"modules\/system\/system.base.css":1,"sites\/all\/modules\/calendar\/css\/calendar_multiday.css":1,"sites\/all\/modules\/contrib\/date\/date_api\/date.css":1,"sites\/all\/modules\/contrib\/date\/date_popup\/themes\/datepicker.1.7.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"sites\/all\/modules\/contrib\/views\/css\/views.css":1,"sites\/all\/modules\/contrib\/ckeditor\/css\/ckeditor.css":1,"https:\/\/fonts.googleapis.com\/css?family=Maven+Pro:700|Montserrat:400,700|Lobster+Two:700italic":1,"sites\/all\/modules\/contrib\/colorbox\/styles\/default\/colorbox_style.css":1,"sites\/all\/modules\/contrib\/ctools\/css\/ctools.css":1,"sites\/all\/libraries\/fancybox\/source\/jquery.fancybox.css":1,"sites\/all\/modules\/panels\/css\/panels.css":1,"sites\/all\/modules\/popup\/popup.css":1,"\/\/cdn.jsdelivr.net\/bootstrap\/3.0.2\/css\/bootstrap.css":1,"sites\/all\/themes\/bootstrap\/css\/3.0.2\/overrides.min.css":1,"sites\/all\/themes\/smoove_bootstrap\/css\/style.css":1,"sites\/all\/themes\/smoove_bootstrap\/css\/responsive.css":1,"sites\/all\/themes\/smoove_bootstrap\/fonts\/Gotham.css":1}},"colorbox":{"opacity":"0.85","current":"{current} of {total}","previous":"\u00ab Prev","next":"Next \u00bb","close":"Close","maxWidth":"98%","maxHeight":"98%","fixed":true,"mobiledetect":true,"mobiledevicewidth":"480px","file_public_path":"\/sites\/default\/files","specificPagesDefaultValue":"admin*\nimagebrowser*\nimg_assist*\nimce*\nnode\/add\/*\nnode\/*\/edit\nprint\/*\nprintpdf\/*\nsystem\/ajax\nsystem\/ajax\/*"},"fancybox":[],"popup":{"effects":{"show":{"default":"this.body.show();","fade":"\n        if (this.opacity){\n          this.body.fadeTo(\u0027medium\u0027,this.opacity);\n        }else{\n          this.body.fadeIn(\u0027medium\u0027);\n        }","slide-down":"this.body.slideDown(\u0027medium\u0027)","slide-down-fade":"\n        this.body.animate(\n          {\n            height:\u0027show\u0027,\n            opacity:(this.opacity ? this.opacity : \u0027show\u0027)\n          }, \u0027medium\u0027\n        );"},"hide":{"default":"this.body.hide();","fade":"this.body.fadeOut(\u0027medium\u0027);","slide-down":"this.body.slideUp(\u0027medium\u0027);","slide-down-fade":"\n        this.body.animate(\n          {\n            height:\u0027hide\u0027,\n            opacity:\u0027hide\u0027\n          }, \u0027medium\u0027\n        );"}},"linger":250,"delay":0},"bootstrap":{"anchorsFix":0,"anchorsSmoothScrolling":1,"formHasError":1,"popoverEnabled":1,"popoverOptions":{"animation":1,"html":0,"placement":"right","selector":"","trigger":"click","triggerAutoclose":1,"title":"","content":"","delay":0,"container":"body"},"tooltipEnabled":1,"tooltipOptions":{"animation":1,"html":0,"placement":"top","selector":"","trigger":"hover","delay":0,"container":"body"}}});</script>
+</head>
+<body class="navbar-is-static-top html not-front not-logged-in no-sidebars page-node page-node- page-node-271 node-type-page i18n-en">
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+    <div class="region region-page-top">
+    <noscript aria-hidden="true"><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TF56Z26" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  </div>
+  <header id="navbar" role="banner" class="navbar navbar-static-top navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+            <a class="logo navbar-btn pull-left" href="/en" title="Home">
+        <img src="https://www.mobibikes.ca/sites/all/themes/smoove_bootstrap/logo.png" alt="Home" />
+      </a>
+      
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div id="bloc-log-buttons">
+            <section id="block-menu-menu-mon-compte-utilisateur" class="block block-menu clearfix">
+
+      
+  <ul class="menu nav"><li class="first leaf"><a href="/en/register" title="">Sign up</a></li>
+<li class="last leaf"><a href="/en/account" title="">Log in</a></li>
+</ul>
+</section>
+    </div>
+      <div class="navbar-collapse collapse">
+        <nav role="navigation">
+                                            <div class="region region-navigation">
+    <section id="block-menu-block-2" class="block block-menu-block clearfix">
+
+      
+  <div class="menu-block-wrapper menu-block-2 menu-name-main-menu parent-mlid-0 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-1087"><a href="/en/how-it-works">How it works</a></li>
+<li class="leaf menu-mlid-1283"><a href="https://www.mobibikes.ca/en#the-map">Find a bike</a></li>
+<li class="leaf menu-mlid-1100"><a href="/en/offers-subscription">Choose a plan</a></li>
+<li class="leaf menu-mlid-6175"><a href="https://www.mobibikes.ca/en/news/covid-19-updates">COVID-19</a></li>
+<li class="last leaf menu-mlid-1112"><a href="/en/contact-us">Contact us</a></li>
+</ul></div>
+
+</section>
+  </div>
+                  </nav>
+      </div>
+      </div>
+</header>
+
+<div class="main-container container-fluid">
+
+  <header role="banner" id="page-header">
+    
+      <div class="region region-header">
+    <section id="block-block-21" class="block block-block clearfix">
+
+      
+  <div class="info-banner" style="background-color:#ffff00; font-size: 16px; text-align:center; padding:5px;">Your health and safety is our top priority. <a href="//www.mobibikes.ca/en/news/covid-19-updates">Read more</a> about our response to COVID-19.</div>
+
+</section>
+  </div>
+  </header> <!-- /#page-header -->
+
+  <div class="row">
+
+    
+    <section class="col-sm-12">
+                  <a id="main-content"></a>
+      <div class="contain-title">
+        <div id="bloc-liens-btn">
+            <a href="/en/contact-us" title="Contact us" class="envelope"></a>
+            <a href="/en/account" title="My account" class="check_in_with_card"></a>
+            <!-- <a href="#" class="share"></a> -->
+        </div>
+                          <h1 class="page-header">System data</h1>
+                      </div>
+
+      <div class="container page-content">
+                                              <div class="region region-content">
+    <section id="block-system-main" class="block block-system clearfix">
+
+      
+  <article id="node-271" class="node node-page clearfix">
+		<div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even"><p class="p1 rtecenter"><span class="s1">We are excited to share our system data with you. We will be uploading data on an ongoing basis. Stay tuned for more.</span><br />
+	 </p>
+
+<p class="p1"> </p>
+
+<ul><li class="p1" style="background-image: url(&quot;../images/arrow_right_mini_blue.png&quot;);"><a href="https://drive.google.com/file/d/1-ADbyB1k1IIv3bjs70nG_m0C0zigI5n5/view?usp=sharing">ALL of 2017</a><a href="https://drive.google.com/file/d/135Jn8mMog5FccPf89KAtlu_vqpE2EHwX/view?usp=sharing"> </a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/18nSmd8szs1abJ-_emITXkjPMhQ0sAA-k/view?usp=sharing" target="_blank">January 2018</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/18ZgxCe4Oo2Pus7HgHLecH9uuGtylwOaD/view?usp=sharing" target="_blank">February 2018</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/18BLHoJHkFf6Y1TU91tWh36q7wEbrMJjj/view?usp=sharing" target="_blank">March 2018</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/17yEKUosmvk20MgXFbdK9b8W8v-RTa_Ud/view?usp=sharing" target="_blank">April 2018</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/17tDVH1CfB4MSbVkRj5sUmiTua5ra49b6/view?usp=sharing" target="_blank">May 2018</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1BblN6ENWBPWAti262GTo9IOqYOPJG7ez/view?usp=sharing" target="_blank">June 2018</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1Cz4c2AmQjEErm97Nj7Hytrr4VfpuG5F6/view?usp=sharing">July 2018</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1-evwGaCtvfRIUYj6A1GPl6ByCkhgfQhM/view?usp=sharing">August 2018</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/10CIaBaPwAEEKRrMitubYSZaG9VRaZKAI/view?usp=sharing">September 2018</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1-uyrFleVIHZjyNIj-iCbtJ63vFZnTVS7/view?usp=sharing">October 2018</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/123RFp09U95pD7EkUl1alkuAEqQnhX7bJ/view?usp=sharing">November 2018</a> </li>
+	<li class="p1"><a href="https://drive.google.com/file/d/17dCNNei6gUNDtzeFIMKfJ8xaWSYTxki2/view?usp=sharing" target="_blank">December 2018</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1Adg34DeBYIlOd_mxSDUeinPEkhJFkTkX/view?usp=sharing">January 2019</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1Egm1hWCTUFIKIDQDK4pScnpQbjpfRJof/view?usp=sharing">February 2019</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1Fl2DVuNMMWFMo8a3EHilfxck0KJH0Cu5/view?usp=sharing">March 2019</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1oRpGt22rjkvZrC7cIhDnQdf-dojfkMOm/view?usp=sharing">April 2019</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1620iRVKfAPs0pzmpfupEPcStQ61vAZmQ/view?usp=sharing">May 2019</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/16RsSrz42HlNWr7O0G5axxXS6wYMi48Ys/view?usp=sharing">June 2019</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/16b7RpWOj_O-tYfZM23KJlMyj9c0kqMXA/view?usp=sharing" target="_blank">July 2019</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/17-W2UMCgjXopvJUPZ-eWhEOxtjs73ZhW/view?usp=sharing">August 2019</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/19aqDJksVY87l1yavpQWbA5UNkwzrBVtE/view?usp=sharing" target="_blank">September 2019</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1DXPDzxt5HKkOV5e7B2veQ0PMVtih44LJ/view?usp=sharing">October 2019</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1F5fPg4JEpYXbI3dX1gv7he88gv3CXIfa/view?usp=sharing" target="_blank">November 2019</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1JxpJlpllThBmdbMxYXhBEDnckPtNUkXd/view?usp=sharing">December 2019</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1MCUVg0LJMOJJmvY2PeP91gSmJL3HXobS/view?usp=sharing">January 2020</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1feKIQOmOLgNlQWDkqdD0P9LlZopp_c6U/view?usp=sharing">February 2020</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1IMwLZfnUkaUMimEi-hp4X68uuke99Ym0/view?usp=sharing">March 2020</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1hffELgzEuCWd_-nqsdQbU6B3YEQYB8KY/view?usp=sharing" target="_blank">April 2020</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1pMh7Wp-dYz8M8xAbfRWOVeMzqwMVyZTJ/view?usp=sharing">May 2020</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1femdPsRctZchjDgsGy2Q4akNOn_PmKVO/view?usp=sharing">June 2020</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1UYA5dLM_1Hkc3RQGnrGpu-GXJ70JZLm6/view?usp=sharing" target="_blank">July 2020</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/13clYhYD4xvh-RX_e7-pX3xF1LheT40SZ/view?usp=sharing" target="_blank">August 2020</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/13tTHQY4-bMBwSgnG-L48XC6R_xQf389G/view?usp=sharing">September 2020</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1UZ77Xx6H0xsDUQ6z2ZEkFotC71xedtt-/view?usp=sharing">October 2020</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1h7tvRaMkqOVZY0xvOcIU1TXb36qe8Hbu/view?usp=sharing" target="_blank">November 2020</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/17gUSmxTJXWPjbB-l7HDK1FzlvULTqXNf/view?usp=sharing" target="_blank">December 2020</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/17lpYIixTOcdZ7-SgoXrr4vdeSnYp_xgQ/view?usp=sharing">January 2021</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/17pmWJ-yJUT66A09lrMax01_bnEycwAco/view?usp=sharing">February 2021</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/17k7nMOUdVTZykAUP6nZHylKf-_a7nJR-/view?usp=sharing">March 2021</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/19GwTAEThIpzc1C12QYiEvu-P39SQqjaF/view?usp=sharing" target="_blank">April 2021</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1COOOyAc-2ThrgaTbflT29pmoROdb9oIk/view?usp=sharing" target="_blank">May 2021</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1CTwGwFJ9mOTGRM5fM70xhQW7VxXcB1Do/view?usp=sharing">June 2021</a></li>
+	<li class="p1"><a href="https://drive.google.com/file/d/1CWCv3XorFgbLgnMkXFVHoie342s3Oioa/view?usp=sharing">July 2021</a></li>
+</ul>
+
+<p class="p1"> </p>
+
+<div class="p1"><strong>DATA NOTES</strong></div>
+
+<ul><li class="p1"><strong>​</strong>Departure and Return times of trips have been rounded to the nearest hour to maintain the privacy of our users.</li>
+	<li class="p1">Accounts have been anonymized to maintain the privacy of our users.</li>
+	<li class="p1">Trips made by our Operations team for purposes of rebalancing and maintenance have been removed.</li>
+	<li class="p1">A 'Stopover' is when a bike is locked using the cable lock rather than at a station. Please note that a bike's timer continues to run when in Stopover mode.</li>
+	<li class="p1">This data may only be used in accordance with our <a href="//www.mobibikes.ca/sites/default/files/ressources/vbs_data_license_agreement_00478531xc0163_0.pdf">Data License Agreement</a>.</li>
+</ul>
+
+<p class="p1">Questions? Contact us at <a href="mailto:info@mobibikes.ca">info@mobibikes.ca</a>. </p>
+</div></div></div>
+	
+
+    <footer>
+          </footer>
+    
+
+</article>
+
+</section>
+  </div>
+      </div>
+    </section>
+
+    
+  </div>
+</div>
+<footer class="footer container-fluid">
+    <div class="container">
+          <div class="region region-footer">
+    <section id="block-menu-block-3" class="block block-menu-block col-sm-3 col-md-3 clearfix">
+
+        <h2 class="block-title">About</h2>
+    
+  <div class="menu-block-wrapper menu-block-3 menu-name-menu-menu-footer-about parent-mlid-0 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-1268"><a href="/en/contact-us" title="">Contact Us</a></li>
+<li class="leaf menu-mlid-1278"><a href="/en/jobs" title="">Jobs</a></li>
+<li class="leaf menu-mlid-1266"><a href="/en/our-company" title="">Our Company</a></li>
+<li class="leaf menu-mlid-1267"><a href="/en/sponsors-and-partners" title="">Sponsors &amp; Partners</a></li>
+<li class="last leaf menu-mlid-1314"><a href="/en/news" title="">News</a></li>
+</ul></div>
+
+</section>
+<section id="block-menu-block-4" class="block block-menu-block col-sm-3 col-md-3 clearfix">
+
+        <h2 class="block-title">Members</h2>
+    
+  <div class="menu-block-wrapper menu-block-4 menu-name-menu-menu-footer-members parent-mlid-0 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-1270"><a href="/en/offers-subscription" title="">Sign up</a></li>
+<li class="leaf menu-mlid-1271"><a href="/en/account">Member Login</a></li>
+<li class="leaf menu-mlid-4243"><a href="/en/community-pass">Community Pass</a></li>
+<li class="last leaf menu-mlid-1450"><a href="/en/corporate-program">Corporate Program</a></li>
+</ul></div>
+
+</section>
+<section id="block-menu-block-6" class="block block-menu-block col-sm-3 col-md-3 clearfix">
+
+        <h2 class="block-title">Navigate</h2>
+    
+  <div class="menu-block-wrapper menu-block-6 menu-name-menu-menu-footer-navigate parent-mlid-0 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-1273"><a href="/en/how-it-works">How it Works</a></li>
+<li class="leaf has-children menu-mlid-1274"><a href="/en/offers-subscription" title="">Choose a plan</a></li>
+<li class="leaf menu-mlid-1343"><a href="https://www.mobibikes.ca/en/bikesafe">BIKESAFE</a></li>
+<li class="leaf menu-mlid-4244"><a href="https://www.mobibikes.ca/en#the-map">Find a Bike</a></li>
+<li class="last leaf menu-mlid-4250"><a href="https://www.mobibikes.ca/en/faq">FAQ</a></li>
+</ul></div>
+
+</section>
+<section id="block-menu-block-5" class="block block-menu-block col-sm-3 col-md-3 clearfix">
+
+        <h2 class="block-title">Resources</h2>
+    
+  <div class="menu-block-wrapper menu-block-5 menu-name-menu-menu-footer-ressources parent-mlid-0 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-1276"><a href="/en/events-calendar" title="">Events &amp; Classes</a></li>
+<li class="leaf menu-mlid-1277"><a href="/en/cycling-maps" title="">Cycling Maps</a></li>
+<li class="leaf active-trail active menu-mlid-1285 active"><a href="/en/system-data" title="" class="active-trail active">System data</a></li>
+<li class="last leaf menu-mlid-1307"><a href="/en/local-bike-shops" title="">Local Bike Shops</a></li>
+</ul></div>
+
+</section>
+  </div>
+          <div class="region region-footer-bottom">
+    <section id="block-block-17" class="block block-block clearfix">
+
+    <h2 class="block-title">Get Mobi news & updates</h2>
+
+    <!-- Begin MailChimp Signup Form -->
+    <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+
+    <div id="mc_embed_signup">
+        <form action="//vancouverbikeshare.us13.list-manage.com/subscribe/post?u=4ede28f3cc9e15c77b33a6607&amp;id=eb8acb7c86" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll">
+                <div class="form-line">
+                    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Enter email" required>
+                </div>
+                <div class="form-line">
+                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                        <input type="text" name="b_4ede28f3cc9e15c77b33a6607_ac0fce2ecc" tabindex="-1" value="">
+                    </div>
+                    <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="btn btn-blue">Subscribe</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--End mc_embed_signup-->
+
+</section> <!-- /.block -->
+<section id="block-block-10" class="block block-block clearfix">
+
+      
+  <a href="https://www.facebook.com/MobiBikeShare/" id="facebook" target="_blank">facebook</a> <a href="https://twitter.com/mobi_bikes" id="twitter" target="_blank">twitter</a> <a href="https://www.instagram.com/mobi_bikes/" id="instagram" target="_blank">instagram</a>
+</section>
+<section id="block-block-14" class="block block-block clearfix">
+
+      
+  <a href="http://cyclehop.com/" target="_blank"><img alt="" src="//www.mobibikes.ca/sites/default/files/ressources/visuel/partenaires/logo_partner_cyclehop.png" style="width: 221px; height: 42px;" /></a><a href="http://vancouver.ca/" target="_blank"><img alt="" src="//www.mobibikes.ca/sites/default/files/ressources/visuel/partenaires/gc-new-white.png" style="width: 221px; height: 39px;" /></a><a href="http://www.smoove-bike.com/" target="_blank"><img alt="" src="//www.mobibikes.ca/sites/default/files/ressources/visuel/partenaires/logo_partner_smoove_white.png" style="width: 152px; height: 50px;" /></a>  <a href="http://www.shaw.ca" target="_blank"><img alt="" src="//www.mobibikes.ca/sites/default/files/ressources/visuel/mobi-shaw/logo-shaw2.png" style="width: 140px; height: 48px;" /></a>
+</section>
+<section id="block-menu-menu-menu-footer" class="block block-menu clearfix">
+
+        <h2 class="block-title">Menu footer</h2>
+    
+  <ul class="menu nav"><li class="first leaf"><a href="/en/terms-and-conditions-use" title="">Terms and Conditions</a></li>
+<li class="last leaf"><a href="/en/privacy-policy">Privacy Policy</a></li>
+</ul>
+</section>
+<section id="block-block-3" class="block block-block clearfix">
+
+      
+    	<div class="choosit">
+        <a href="http://www.choosit.com" target="_blank"><img src="/sites/all/themes/smoove_bootstrap/images/logo_choosit_mini_blanc.png" /></a>
+    </div>
+    <div class="gotop">
+        <a href="#">Top</a>
+    </div>
+</section> <!-- /.block -->  </div>
+        <div class="copyright">Copyright 2016 – Vanncouver Bike Share Inc <br>Mobi is the official City of Vancouver bike share program, operated by Vancouver Bike Share Inc, a subsidiary of CycleHop LLC and powered by Smoove SAS</div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-575b709be73b3760"></script>
+  <script src="https://www.mobibikes.ca/sites/all/themes/bootstrap/js/bootstrap.js?r7fwxi"></script>
+</body>
+</html>
