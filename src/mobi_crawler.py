@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup
 import requests
-from zmq import Again
 
 LINK = "https://www.mobibikes.ca/en/system-data"
-PAGE_FILE = "./data/mobibikes_data.html"
+DATA_FOLDER = "data/"
+PAGE_FILE = DATA_FOLDER + "mobibikes_data.html"
 RE_DOWNLOAD = False # Controls whether get new webpages or load from data 
 
 def get_drive_paths(page):
@@ -20,6 +20,25 @@ def get_drive_paths(page):
 
     return res[2:] # The first 2 are all of 2017 data files, skipping
 
+
+def download_from_drive(paths):
+    for month, url in paths:
+        id = url.split(r'/')[5]
+
+        month = month.lower().replace(' ', '_') # e.g. March 2017 becomes march_2017
+        output_file = DATA_FOLDER + month + ".csv"
+
+        # TODO
+
+        id = '0BwwA4oUTeiV1UVNwOHItT0xfa2M'
+        request = drive_service.files().get_media(fileId=id)
+        fh = io.BytesIO()
+        downloader = MediaIoBaseDownload(fh, request)
+        done = False
+        while done is False:
+            status, done = downloader.next_chunk()
+            print ("Download %d%%." % int(status.progress() * 100))
+
 def main():
     if RE_DOWNLOAD:
         with open(PAGE_FILE, "w") as f:
@@ -30,8 +49,7 @@ def main():
         page = f.read()
 
     drive_paths = get_drive_paths(page)
-
-    print(drive_paths)
+    download_from_drive(drive_paths)
     
     return
 
