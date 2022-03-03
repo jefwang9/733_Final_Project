@@ -14,4 +14,4 @@ Data folder storing crawled webpages and downloaded csv files.
 ### Crawler
 
 - Beautiful Soup
-- Google Drive API
+- Built-in packages: re, requests
