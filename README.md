@@ -15,3 +15,7 @@ Data folder storing crawled webpages and downloaded csv files.
 
 - Beautiful Soup
 - Built-in packages: re, requests
+
+### Geocoding getter
+
+- Google Maps (pip package: ```googlemaps```)
