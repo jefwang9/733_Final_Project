@@ -19,3 +19,6 @@ Data folder storing crawled webpages and downloaded csv files.
 ### Geocoding getter
 
 - Google Maps (pip package: ```googlemaps```)
+
+### Data preper
+- Built-in packages: pickle
