@@ -2,10 +2,11 @@ from config import GEOCODING_API_KEY
 import googlemaps
 
 
-DEBUG = False
+# 0 = off, 1 = everything, 2 exception only
+DEBUG = 2
 
 
-class InvalidResponse(Exception):
+class NotFound(Exception):
     pass
 
 
@@ -15,20 +16,23 @@ def geocoder(address):
     postal_code = None
     lat, long = None, None
 
-    if DEBUG:
+    if DEBUG == 1:
         print("Looking up ... \n" + address)
 
     lookup_res = gmaps.places_autocomplete(input_text=address, components={"country": ["CA"]})
     if not lookup_res:
-        raise InvalidResponse
-    elif DEBUG:
+        if DEBUG >= 1:
+            print("***NotFound*** " + address)
+
+        raise NotFound
+    elif DEBUG == 1:
         print(lookup_res)
         print("\n------------------------------------\n")
 
     place_id = lookup_res[0]["place_id"]
     place_res = gmaps.place(place_id=place_id)
 
-    if DEBUG:
+    if DEBUG == 1:
         print(place_res + "\n")
 
     address_components = place_res["result"]["address_components"]
