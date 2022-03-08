@@ -3,11 +3,22 @@ SFU CMPT733_Final_Project
 
 ## File structure
 
-### /src
-Source files.
-
-### /data
-Data folder storing crawled webpages and downloaded csv files.
+.
+├── data
+│ ├──
+│ └──
+├── src # Source Files (alternatively `spec` or `tests`)
+│ ├── data_prep #
+│ │ ├──
+│ │ └──
+│ ├── map_visual
+│ │ ├── main.html # Webpage
+│ │ ├── script.js # Webpage script
+│ │ ├── style.css # Styling
+│ │ └── web_display_dataProcess.ipynb # Data processing for heatmap
+│ ├── kmeans.ipynb
+│ └── model.ipynb
+└── README.md
 
 ## Dependencies
 
