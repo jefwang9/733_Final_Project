@@ -5,8 +5,17 @@ SFU CMPT733_Final_Project
 
     .
     ├── data
-    │ ├──
-    │ └──
+    │ ├── raw_mobibikes_data
+    │ │ └── ...
+    │ ├── tmp
+    │ │ └──
+    │ ├── geocodings.csv
+    │ ├── Mobi_System_Data_2017.csv
+    │ ├── Mobi_System_Data_2018.csv
+    │ ├── Mobi_System_Data_2019.csv
+    │ ├── Mobi_System_Data_2020.csv
+    │ ├── Mobi_System_Data_2021.csv
+    │ ├── not_found_stations.txt
     ├── src # Source Files (alternatively `spec` or `tests`)
     │ ├── data_prep #
     │ │ ├──
