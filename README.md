@@ -6,9 +6,11 @@ SFU CMPT733_Final_Project
     .
     ├── data
     │ ├── raw_mobibikes_data
+    │ │ ├── Mobi_System_Data_2018-05.csv
+    │ │ ├── Mobi_System_Data_2018-06.xlsx
     │ │ └── ...
     │ ├── tmp
-    │ │ └──
+    │ │ └── ... omitted ...
     │ ├── geocodings.csv
     │ ├── Mobi_System_Data_2017.csv
     │ ├── Mobi_System_Data_2018.csv
@@ -18,8 +20,11 @@ SFU CMPT733_Final_Project
     │ ├── not_found_stations.txt
     ├── src # Source Files (alternatively `spec` or `tests`)
     │ ├── data_prep #
-    │ │ ├──
-    │ │ └──
+    │ │ ├── mobi_crawler.py
+    │ │ ├── google_drive_downloader.py
+    │ │ ├── data_merger.ipynb
+    │ │ ├── geocoding_getter.py 
+    │ │ └── ... 
     │ ├── map_visual
     │ │ ├── main.html # Webpage
     │ │ ├── script.js # Webpage script
