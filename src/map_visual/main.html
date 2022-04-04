@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Heatmaps</title>
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
+    <script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+
+    </div>
+    <div id="map" style="width:100%;height:700px;"</div>></div>
+    <!-- <button id="deleteTable">DeleteTable</button> -->
+    <!-- <div id="table">
+        <table id="routesTable">
+            <thead>
+                <tr>
+                    <th>Start Station</th>
+                    <th>Lat</th>
+                    <th>lat</th>
+                    <th>姓名</th>
+                    <th>long</th>
+                    <th>lat</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+        </table>
+    </div> -->
+    <div>
+        <div id="floating-panel">
+            <button id="toggle-heatmap">Heatmap</button>
+            <button id="showTable">ShowTable</button>
+            <button id="toggle-BikeLane">BikeLane</button>
+            <!-- <button id="toggle-BikeLane">BikeLane</button> -->
+            <!-- <button id="toggle-popularRoutes">PopularRoutes</button> -->
+            <!-- <button id="change-gradient">Change gradient</button> -->
+            <!-- <button id="change-radius">Change radius</button> -->
+            <!-- <button id="change-opacity">Change opacity</button> -->
+            <!-- <button id="change-data">readTextFile</button> -->
+            <div id="floating-panel">
+                <b>Mode of Travel: </b>
+                <select id="mode">
+                    <option value="BICYCLING">Bicycling</option>
+                    <option value="WALKING">Walking</option>
+                    <option value="TRANSIT">Transit</option>
+                </select>
+            </div>
+    </div>
+    <div id="container"></div>
+    
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script async src="https://maps.googleapis.com/maps/api/js?key=googleAPI&libraries=visualization&callback=initMap">
+    </script>
+</body>
+
+</html>
