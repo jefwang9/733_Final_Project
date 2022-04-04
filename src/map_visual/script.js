@@ -27,6 +27,10 @@ function initMap() {
   document
     .getElementById("toggle-BikeLane")
     .addEventListener("click", toggleBikeLane);
+  document
+    .getElementById("toggle-activityBar")
+    .addEventListener("click", toggleActivityBar);
+  
   
 
   // document
@@ -332,6 +336,27 @@ function displayTable() {
     container.appendChild(table);
   }
     
+}
+
+
+
+// Activity Bar Chart
+var activityBarchartdata = [
+  {
+    x: ['110th & Cambie', 'Olympic Village Station	', 'Bute & Barclay'],
+    y: [200, 140, 230],
+    type: 'bar'
+  }
+];
+
+
+function toggleActivityBar() {
+  if (document.getElementById("activityBarchart").innerHTML == "") {
+    Plotly.newPlot('activityBarchart', activityBarchartdata);
+  }
+  else {
+    document.getElementById("activityBarchart").innerHTML = ""
+  }
 }
 
 
