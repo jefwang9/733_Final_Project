@@ -47,9 +47,9 @@ def main(argv):
     """
     For density queries:
         argv[0]: dataset invoked, e.g. "bike_ways", "parks", "translink_stops"
-        argv[1]: latitude of location to query
-        argv[2]: longitude of location to query
-        argv[3]: radius to query (TODO: unit?)
+        argv[1]: longitude of location to query
+        argv[2]: latitude of location to query
+        argv[3]: radius to query (in meters)
     For population queries:
         argv[0]: specify "population"
         argv[1]: postal code to query
