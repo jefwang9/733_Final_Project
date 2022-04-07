@@ -1,5 +1,32 @@
 import sys
 import pandas as pd
+from pyproj import Geod
+
+"""
+TODO
+[x] We need to get distance between two coordinates (for bike_ways, to get the total distance within the bounding box in meters)
+[x] We need to get the bounding box around coordinates given a distance
+
+"""
+
+def get_bounding_box(long, lat, distance):
+    """
+    Distance is in meters
+    """
+    g = Geod(ellps='WGS84')
+    fwd_long, fwd_lat, _  = g.fwd([long]*4, [lat]*4, [0, 90, 180, 270], [distance]*4)
+    
+    # return values: max_long, min_long, max_lat, min_lat
+    return max(fwd_long), min(fwd_long), max(fwd_lat), min(fwd_lat)
+
+
+def get_distance(long1, lat1, long2, lat2):
+    """
+    Returns distance in meters
+    """
+    g = Geod(ellps='WGS84')
+    return g.inv(long1, lat1, long2, lat2)[2]
+
 
 def get_population(postal_code):
     postal_code = postal_code.upper()[:3] # get geographic code
