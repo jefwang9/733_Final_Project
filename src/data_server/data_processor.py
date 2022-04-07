@@ -52,7 +52,13 @@ def query_bike_ways(query_obj, long, lat, radius):
 
 def query_parks(query_obj, long, lat, radius):
     df = pd.read_csv("../../data/processed/parks.csv")
-    ...
+    bmax_long, bmin_long, bmax_lat, bmin_lat = query_obj.get_bounding_box(long, lat, radius)
+    
+    count = df.loc[(df["Longitude"] < bmax_long) & (df["Longitude"] > bmin_long) & \
+                   (df["Latitude"] > bmin_lat) & (df["Latitude"] < bmax_lat)].shape[0]
+    
+    print(str(count))
+    return count
     
     
 def query_translink_stops(query_obj, long, lat, radius):
