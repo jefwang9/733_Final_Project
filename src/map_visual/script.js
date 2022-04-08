@@ -30,7 +30,9 @@ function initMap() {
   document
     .getElementById("toggle-activityBar")
     .addEventListener("click", toggleActivityBar);
-  
+  document
+    .getElementById("updateDataByDate")
+    .addEventListener("click", updateDataByDate);
   
 
   // document
@@ -286,6 +288,7 @@ function displayTable() {
     var container = document.getElementById('container');
     // create table element
     var table = document.createElement('table');
+    table.classList.add("table")
     var tbody = document.createElement('tbody');
     var thead = document.createElement('thead');
 
@@ -359,6 +362,14 @@ function toggleActivityBar() {
   }
 }
 
+
+
+function updateDataByDate(){
+  const selectedYear = document.getElementById("year").value;
+  const selectedMonth = document.getElementById("month").value;
+  console.log("year " + selectedYear)
+  console.log("month " + selectedMonth)
+}
 
 
 
