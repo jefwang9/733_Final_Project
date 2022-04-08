@@ -9,6 +9,10 @@ table td {
   display: none;
 }
 
+.navigat {
+  padding: .375rem .75rem
+}
+
 /* Optional: Makes the sample page fill the window. */
 html,
 body {
