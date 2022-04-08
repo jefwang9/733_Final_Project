@@ -112,15 +112,6 @@ function changeOpacity() {
   heatmap.set("opacity", heatmap.get("opacity") ? null : 0.2);
 }
 
-// var station_data = [
-// {location: new google.maps.LatLng(49.274249, -123.098481), weight: 343},
-// {location: new google.maps.LatLng(49.273103, -123.069892), weight: 100},
-// {location: new google.maps.LatLng(49.265005, -123.079481), weight: 15},
-// {location: new google.maps.LatLng(49.265024, -123.08127), weight: 0.5},
-// {location: new google.maps.LatLng(49.271377, -123.069416), weight: 0.5},
-// {location: new google.maps.LatLng(49.268616, -123.069908), weight: 0.5},
-// {location: new google.maps.LatLng(49.266969, -123.069936), weight: 0.5}
-// ]
   
 // Heatmap data: 500 Points
 function getPoints() {
@@ -281,11 +272,11 @@ var orderArrayHeader = ["Checkout Station","Lat","Lon","Destination Station", "l
 
 
 function displayTable() {
-
+  var container = document.getElementById('container');
   var tableexist = document.querySelector("table");
   if (!tableexist) {
     // get handle on div
-    var container = document.getElementById('container');
+    
     // create table element
     var table = document.createElement('table');
     table.classList.add("table")
@@ -295,7 +286,13 @@ function displayTable() {
     table.appendChild(thead);
     
     for(var i=0;i<orderArrayHeader.length;i++){
-        thead.appendChild(document.createElement("th")).
+      console.log("hii");
+        var thh = document.createElement("th")
+        if ([1, 2, 4, 5].includes(i)) {
+          thh.style.display = 'none';
+        }
+        thead.appendChild(thh).
+        // thead.appendChild(document.createElement("th")).
         appendChild(document.createTextNode(orderArrayHeader[i]));
     }
     
@@ -324,6 +321,11 @@ function displayTable() {
         for (var b = 0; b < vals.length; b++) {
             // create td element
             var cell = document.createElement('td');
+
+            if ([1, 2, 4, 5].includes(b)) {
+              cell.style.display = 'none';
+            }
+
             // set text
             cell.textContent = vals[b];
             // cell.classList.add("hidden");
@@ -337,10 +339,10 @@ function displayTable() {
     table.appendChild(tbody);
     // append table to container
     container.appendChild(table);
+  } else {
+    container.innerHTML = ""
   }
-    
 }
-
 
 
 // Activity Bar Chart
@@ -353,9 +355,13 @@ var activityBarchartdata = [
 ];
 
 
+
+
 function toggleActivityBar() {
   if (document.getElementById("activityBarchart").innerHTML == "") {
-    Plotly.newPlot('activityBarchart', activityBarchartdata);
+    Plotly.newPlot('activityBarchart', activityBarchartdata, {
+      title: 'Activity bar chart',
+    });
   }
   else {
     document.getElementById("activityBarchart").innerHTML = ""
@@ -373,128 +379,11 @@ function updateDataByDate(){
 
 
 
-// var pRoutesData = [[(49.291285, -123.13526), (49.288444, -123.139203)],
-//       [(49.287528, -123.142139), (49.28602, -123.116624)]
-// ] 
+// function deleteTable() {
+//   var tbl = document.querySelector("table");
+//   if(tbl) tbl.parentNode.removeChild(tbl);
 
-
-// function populateTable(table, rows, cells, content) {
-//     var is_func = (typeof content === 'function');
-//     if (!table) table = document.createElement('table');
-//     for (var i = 0; i < rows; ++i) {
-//         var row = document.createElement('tr');
-//         for (var j = 0; j < cells; ++j) {
-//             row.appendChild(document.createElement('td'));
-//             var text = !is_func ? (content + '') : content(table, i, j);
-//             row.cells[j].appendChild(document.createTextNode(text));
-//         }
-//         table.appendChild(row);
-//     }
-//     return table;
 // }
-
-// function generateDataModel() { 
-//     console.log("generate data")
-//     todos = ["49.291285", "-123.13526"]; 
-//     $('#todo-list li').each(function (i, el) { 
-//         console.log("generate data")
-//         todos.push({text: el.innerText}); 
-//     }) 
-// } 
-
-
-
-//     //1,先准备数据
-// var datas=[{
-//     start_station:"Yaletown-Roundhouse Station",
-//     start_lon: -123.121817,
-//     start_lat: 49.274566,
-//     destination_station:"Dunsmuir & Beatty",
-//     destination_lon: -123.110154,
-//     destination_lat: 49.279764	
-//     },{
-//     start_station:"6th & Carolina",
-//     start_lon: -123.090785,
-//     start_lat: 49.265213,
-//     destination_station: "Georgia & Homer",
-//     destination_lon: -123.115271,
-//     destination_lat: 49.280787	
-// }];
-
-
-// var orderArrayHeader = ["Start station","lat","lon","Destination Station", "lat", "lon"];
-
-// function generateTable() {
-//   //2,往tbody里面创建行，有几个人（通过数组的长度）我们就创建几行
-//   // var tbody = document.querySelector("tbody");
-//   var tdiv = document.getElementById("table");
-//   var tbody = document.createElement("table");
-//   // x.style.display = "block";
-
-//   var thead = document.createElement('thead');
-
-//   tdiv.appendChild(thead);
-//   for(var i=0;i<orderArrayHeader.length;i++){
-//     thead.appendChild(document.createElement("th")).
-//     appendChild(document.createTextNode(orderArrayHeader[i]));
-//   }
-
-//   for(var i=0;i<datas.length;i++)  //外面的for循环 是 行tr
-//   {
-//       var tr=document.createElement("tr");
-//       tbody.appendChild(tr);
-//       //3,往tr每一行里面创建单元格（跟数据有关系的3个单元格），td单元格的数量取决于每个对象的属性个数 for循环遍历对象 datas[i]
-//       for(var k in datas[i])   //里面的for循环是 列
-//       {
-//           var td=document.createElement("td");  //创建单元格
-//           tr.appendChild(td);
-//           td.innerHTML=datas[i][k]; //把对象里面的属性值 datas[i][k]给td
-//       }
-//       //4，创建有删除二字的单元格
-//       var td=document.createElement("td");
-//       tr.appendChild(td);
-//       td.innerHTML="<a href='javascript:;'>show</a>";
-//   }
-//   tdiv.appendChild(tbody)
-//   showIndividualRoute()
-//   display();
-// }
-
-
-// function showIndividualRoute() {
-//     console.log("showIndividualRoute")
-//    var as=document.querySelectorAll("a");
-//     for(var i=0;i<as.length;i++)
-//     {
-//         as[i].onclick=function () {  //点击a 删除 当前a 所在的行（a链接的爸爸的爸爸）
-//             // tbody.removeChild(this.parentNode.parentNode);
-//           console.log("show data")
-//           var startlon = Number(this.parentNode.parentNode.cells[1].innerHTML)
-//           var startlat = Number(this.parentNode.parentNode.cells[2].innerHTML)
-//           var endlon = Number(this.parentNode.parentNode.cells[4].innerHTML)
-//           var endlat = Number(this.parentNode.parentNode.cells[5].innerHTML)
-//           console.log(this.parentNode.parentNode.cells[0])
-//           togglepopularRoutes([startlat, startlon], [endlat, endlon])
-//         }
-//     }
-// }
-
-
-function deleteTable() {
-  var tbl = document.querySelector("table");
-  if(tbl) tbl.parentNode.removeChild(tbl);
-  // if(tbl) tbl.parentNode.removeChild(tbl);
-  // x.style.display = "none";
-    //5,删除操作
-  // var tbody = document.querySelector("tbody");
-  // tbody.removeChild();
-    // for(var i=0;i<as.length;i++)
-    // {
-    //     as[i].onclick=function () {  //点击a 删除 当前a 所在的行（a链接的爸爸的爸爸）
-    //         tbody.removeChild(this.parentNode.parentNode);
-    //     }
-    // }
-}
 
 
 
