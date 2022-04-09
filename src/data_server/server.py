@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
+import server_data_process as sdp
 
 app = Flask(__name__)
 CORS(app)
@@ -18,12 +19,24 @@ def helloWorld():
 #     return response
 
 
-@app.route("/api", methods = ['GET'])
-def getdatabydate2():
+# @app.route("/api", methods = ['GET'])
+# def getdatabydate2():
+#     year = request.args.get('year') 
+#     print(year)
+#     # response = jsonify({'year': year})
+#     response = sdp.get_year_files(2018, 11)
+#     return response
+
+
+@app.route("/api/heatmapmonthly", methods = ['GET'])
+def getheatmapData():
     year = request.args.get('year') 
+    month = request.args.get('month') 
     print(year)
-    response = jsonify({'year': year})
+    print(month)
+    response = sdp.get_year_files(year, month)
     return response
+
 
 
 if __name__ == "__main__":

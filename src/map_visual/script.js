@@ -1,7 +1,7 @@
 // This example requires the Visualization library. Include the libraries=visualization
 // parameter when you first load the API. For example:
 {/* <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTTl046sFCnjj3T3Yx3o449cNgzn9IvTY&libraries=visualization"> */}
-let map, heatmap, directionsRenderer, directionsService, orignPoint, destinationPoint, bikeLayer ;
+let map, heatmap, directionsRenderer, directionsService, orignPoint, destinationPoint, bikeLayer, year, month ;
 
 function initMap() {
   console.log("map")
@@ -32,7 +32,7 @@ function initMap() {
     .addEventListener("click", toggleActivityBar);
   document
     .getElementById("updateDataByDate")
-    .addEventListener("click", test);
+    .addEventListener("click", getheatMapdataByMonth);
 }
 
 
@@ -370,6 +370,22 @@ const test = async () => {
   .then(data => console.log(data))
   .catch(err => console.log('Request Failed', err));;
 }
+
+
+const getheatMapdataByMonth = async () => {
+    const selectedYear = document.getElementById("year").value;
+    const selectedMonth = document.getElementById("month").value;
+    console.log("test cors")
+    let url = "http://192.168.1.106:5000/api/heatmapmonthly?year=" + String(selectedYear) + "&" + "month=" + String(selectedMonth)
+    console.log(url)
+    fetch(url, {
+        method: 'GET', 
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(err => console.log('Request Failed', err));
+}
+
 
 
 
