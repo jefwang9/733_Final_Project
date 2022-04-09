@@ -28,6 +28,7 @@ def helloWorld():
 #     return response
 
 
+# /api/heatmapmonthly?year=2021&month=2
 @app.route("/api/heatmapmonthly", methods = ['GET'])
 def getheatmapData():
     year = request.args.get('year') 
