@@ -349,13 +349,13 @@ function toggleActivityBar() {
 
 
 
-function updateDataByDate(){
-  const selectedYear = document.getElementById("year").value;
-  const selectedMonth = document.getElementById("month").value;
-  console.log("year " + selectedYear)
-  console.log("month " + selectedMonth)
-  downloadFile()
-}
+// function updateDataByDate(){
+//   const selectedYear = document.getElementById("year").value;
+//   const selectedMonth = document.getElementById("month").value;
+//   console.log("year " + selectedYear)
+//   console.log("month " + selectedMonth)
+//   downloadFile()
+// }
 
 
 
@@ -382,10 +382,23 @@ const getheatMapdataByMonth = async () => {
         method: 'GET', 
     })
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => heatmapJsonTransform(data))
     .catch(err => console.log('Request Failed', err));
 }
 
+
+const heatmapJsonTransform = (jsonData) => {
+  var newHeatMapData = []
+  for (let [key, value] of Object.entries(jsonData)) {
+    lat = value.lat;
+    lon = value.lon;
+    ride_count = value.ride_count;
+    newadd = {location: new google.maps.LatLng(lat, lon), weight: ride_count}
+    newHeatMapData.push(newadd)
+  }
+  console.log(newHeatMapData);
+  heatmap.set("data", newHeatMapData);
+}
 
 
 
