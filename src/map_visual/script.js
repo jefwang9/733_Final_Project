@@ -1,7 +1,7 @@
 // This example requires the Visualization library. Include the libraries=visualization
 // parameter when you first load the API. For example:
 {/* <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTTl046sFCnjj3T3Yx3o449cNgzn9IvTY&libraries=visualization"> */}
-let map, heatmap, directionsRenderer, directionsService, orignPoint, destinationPoint, bikeLayer;
+let map, heatmap, directionsRenderer, directionsService, orignPoint, destinationPoint, bikeLayer ;
 
 function initMap() {
   console.log("map")
@@ -32,32 +32,15 @@ function initMap() {
     .addEventListener("click", toggleActivityBar);
   document
     .getElementById("updateDataByDate")
-    .addEventListener("click", updateDataByDate);
-  
-
-  // document
-  //   .getElementById("toggle-popularRoutes")
-  //   .addEventListener("click", togglepopularRoutes);
-  // document
-  //   .getElementById("change-gradient")
-  //   .addEventListener("click", changeGradient);
-  // document
-  //   .getElementById("change-opacity")
-  //   .addEventListener("click", changeOpacity);
-  // document
-  //   .getElementById("change-radius")
-  //   .addEventListener("click", changeRadius);
-  // document
-  //   .getElementById("month-range")
-  //   .addEventListener("input", changemonth);
+    .addEventListener("click", test);
 }
+
+
 
 function toggleHeatmap() {
   console.log("change to heatmap")
   directionsRenderer.setMap(null);
   map.set("zoom", 13)
-  // map.set("center", { lat: 49.28275, lng: -123.12078 })
-  // heatmap.setMap(map);
   heatmap.setMap(heatmap.getMap() ? null : map);
 }
 
@@ -67,11 +50,7 @@ function togglepopularRoutes(orignPoint, destinationpoint) {
   console.log(destinationpoint)
   heatmap.setMap(null);
   directionsRenderer.setMap(map);
-  // orignPoint = [49.291285, -123.13526];
-  // destinationpoint = [49.28803,  -123.142135];
   calculateAndDisplayRoute(directionsService, directionsRenderer,  orignPoint, destinationpoint);
-  // startpoint = { lat: 49.291285, lng: -123.13526 };
-  // destinationpoint = { lat: 49.28803, lng: -123.142135 };
  
   document.getElementById("mode").addEventListener("change", () => {
     calculateAndDisplayRoute(directionsService, directionsRenderer, orignPoint, destinationpoint);
@@ -375,15 +354,24 @@ function updateDataByDate(){
   const selectedMonth = document.getElementById("month").value;
   console.log("year " + selectedYear)
   console.log("month " + selectedMonth)
+  downloadFile()
 }
 
 
 
-// function deleteTable() {
-//   var tbl = document.querySelector("table");
-//   if(tbl) tbl.parentNode.removeChild(tbl);
 
-// }
+
+const test = async () => {
+  console.log("test cors")
+  fetch('http://192.168.1.106:5000/api?year=2022', {
+    method: 'GET', 
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(err => console.log('Request Failed', err));;
+}
+
+
 
 
 
