@@ -43,7 +43,9 @@ class ProcessTopRoutes:
                .reset_index(name="Count")
         df = df.sort_values(by="Count", ascending=False).set_index("Count")
         df = df.head(self.top_n)
-        return df.to_dict()
+        # return df.to_dict()
+        return df.to_json(orient='index')
+
     
     def __init_geo_data(self):
         tmp = pd.read_csv(f"{p}/data/geocodings.csv")[["address", "lat", "long"]]
