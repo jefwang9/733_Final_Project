@@ -4,6 +4,8 @@ import os
 import server_data_process as sdp
 
 app = Flask(__name__)
+app.config['JSON_SORT_KEYS'] = False
+
 CORS(app)
 
 print("Initializing top n routes . . .")
