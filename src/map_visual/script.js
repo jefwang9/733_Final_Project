@@ -5,15 +5,8 @@ let map, heatmap, directionsRenderer, directionsService, orignPoint, destination
 
 function initMap() {
   console.log("map")
-  map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 13,
-    center: { lat: 49.28275, lng: -123.12078 },
-  });
-  heatmap = new google.maps.visualization.HeatmapLayer({
-    data: getPoints(),
-    map: map,
-    gradient: getgradient(),
-  });
+  showHeatMap();
+  
   directionsRenderer = new google.maps.DirectionsRenderer();
   directionsService = new google.maps.DirectionsService();
   bikeLayer = new google.maps.BicyclingLayer();
@@ -22,8 +15,8 @@ function initMap() {
     .getElementById("showTable")
     .addEventListener("click", displayTable);
   document
-    .getElementById("toggle-heatmap")
-    .addEventListener("click", toggleHeatmap);
+    .getElementById("show-heatmap")
+    .addEventListener("click", showHeatMap);
   document
     .getElementById("toggle-BikeLane")
     .addEventListener("click", toggleBikeLane);
@@ -32,30 +25,53 @@ function initMap() {
     .addEventListener("click", toggleActivityBar);
   document
     .getElementById("updateDataByDate")
-    .addEventListener("click", getheatMapdataByMonth);
+    .addEventListener("click", getTopRoutesByMonth);
+  document
+    .getElementById("TopRoutes")
+    .addEventListener("click", TopRoutes);
 }
 
-
-
-function toggleHeatmap() {
-  console.log("change to heatmap")
-  directionsRenderer.setMap(null);
-  map.set("zoom", 13)
-  heatmap.setMap(heatmap.getMap() ? null : map);
-}
-
-function togglepopularRoutes(orignPoint, destinationpoint) {
-  console.log("change to togglepopularRoutes")
-  console.log(orignPoint)
-  console.log(destinationpoint)
-  heatmap.setMap(null);
-  directionsRenderer.setMap(map);
-  calculateAndDisplayRoute(directionsService, directionsRenderer,  orignPoint, destinationpoint);
- 
-  document.getElementById("mode").addEventListener("change", () => {
-    calculateAndDisplayRoute(directionsService, directionsRenderer, orignPoint, destinationpoint);
+function showHeatMap() {
+  document.getElementById("currentMode").innerHTML = "Current in HeatMap"
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 13,
+    center: { lat: 49.28275, lng: -123.12078 },
+    styles: [ 
+      { 
+        "featureType": "poi", 
+        "stylers": [ 
+          { "visibility": "off" } 
+        ] 
+      } 
+    ] 
+  });
+  heatmap = new google.maps.visualization.HeatmapLayer({
+    data: getPoints(),
+    map: map,
+    gradient: getgradient(),
   });
 }
+
+
+// function toggleHeatmap() {
+//   console.log("change to heatmap")
+//   directionsRenderer.setMap(null);
+//   map.set("zoom", 13)
+//   heatmap.setMap(heatmap.getMap() ? null : map);
+// }
+
+// function togglepopularRoutes(orignPoint, destinationpoint) {
+//   console.log("change to togglepopularRoutes")
+//   console.log(orignPoint)
+//   console.log(destinationpoint)
+//   heatmap.setMap(null);
+//   directionsRenderer.setMap(map);
+//   calculateAndDisplayRoute(directionsService, directionsRenderer,  orignPoint, destinationpoint);
+ 
+//   document.getElementById("mode").addEventListener("change", () => {
+//     calculateAndDisplayRoute(directionsService, directionsRenderer, orignPoint, destinationpoint);
+//   });
+// }
 
 
 function toggleBikeLane() {
@@ -247,7 +263,7 @@ var orderArray = [
     ["Bute & Barclay", "49.284893", "-123.128685", "Georgia & Homer", "49.280787", "-123.115271"]
 ];
     
-var orderArrayHeader = ["Checkout Station","Lat","Lon","Destination Station", "lat", "lon"];
+var orderArrayHeader = ["Popular Checkout Station (Blue lag)","Lat","Lon","Popular Return Station (Red lag)", "lat", "lon"];
 
 
 function displayTable() {
@@ -400,8 +416,189 @@ const heatmapJsonTransform = (jsonData) => {
   heatmap.set("data", newHeatMapData);
 }
 
+const showTopNRoutes = async () => {
+    const selectedYear = document.getElementById("year").value;
+    const selectedMonth = document.getElementById("month").value;
+    console.log("test cors")
+    let url = "http://192.168.1.106:5000/api/heatmapmonthly?year=" + String(selectedYear) + "&" + "month=" + String(selectedMonth)
+    console.log(url)
+    fetch(url, {
+        method: 'GET', 
+    })
+    .then(response => response.json())
+    .then(data => heatmapJsonTransform(data))
+    .catch(err => console.log('Request Failed', err));
+}
 
 
+function TopRoutes() {
+  document.getElementById("currentMode").innerHTML = "Current in TopRoutes"
+  map = new google.maps.Map(document.getElementById("map"), {
+  zoom: 13,
+  center: { lat: 49.28275, lng: -123.12078 },
+  styles: [ 
+    { 
+      "featureType": "poi", 
+      "stylers": [ 
+        { "visibility": "off" } 
+      ] 
+    } 
+  ] 
+  });
+}
 
 
+const getTopRoutesByMonth = async () => {
+    const selectedYear = document.getElementById("year").value;
+    const selectedMonth = document.getElementById("month").value;
+    console.log("test cors")
+    let url = "http://192.168.1.106:5000/api/popular_routes?year=" + String(selectedYear) + "&" + "month=" + String(selectedMonth)
+    console.log(url)
+    fetch(url, {
+        method: 'GET', 
+    })
+    .then(response => response.json())
+      // .then(data => console.log(data))
+      .then(data => TopRoutesTransform(data))
+    .catch(err => console.log('Request Failed', err));
+}
 
+
+const TopRoutesTransform = (jsonData) => {
+  orderArray = []
+  for (let [key, value] of Object.entries(jsonData)) {
+    // console.log(value)
+    route = []
+    departS = value["Departure station"]
+    departlat = value["Departure lat"]
+    departlon = value["Departure long"]
+    returnS = value["Return station"]
+    returnlat = value["Return lat"]
+    returnlon = value["Return long"]
+    route.push(String(departS))
+    route.push(String(departlat))
+    route.push(String(departlon))
+    route.push(String(returnS))
+    route.push(String(returnlat))
+    route.push(String(returnlon))
+    orderArray.push(route)
+  }
+  // console.log(route)
+  displayTable()
+  showtopNroutesMarkers(orderArray)
+}
+
+
+function displayTable() {
+  var container = document.getElementById('topNcontainer');
+  var tableexist = document.querySelector("table");
+  container.innerHTML = ""
+  // create table element
+  var table = document.createElement('table');
+  table.classList.add("table")
+  var tbody = document.createElement('tbody');
+  var thead = document.createElement('thead');
+
+  table.appendChild(thead);
+  
+  for(var i=0;i<orderArrayHeader.length;i++){
+      var thh = document.createElement("th")
+      if ([1, 2, 4, 5].includes(i)) {
+        thh.style.display = 'none';
+      }
+      thead.appendChild(thh).
+      // thead.appendChild(document.createElement("th")).
+      appendChild(document.createTextNode(orderArrayHeader[i]));
+  }
+  
+  // loop array
+  for (i = 0; i < orderArray.length; i++) {
+      // get inner array
+      var vals = orderArray[i];
+      // create tr element
+    var row = document.createElement('tr');
+    // show biking routes direction on google map
+
+      // loop inner array
+      for (var b = 0; b < vals.length; b++) {
+          // create td element
+          var cell = document.createElement('td');
+
+          if ([1, 2, 4, 5].includes(b)) {
+            cell.style.display = 'none';
+          }
+
+          // set text
+          cell.textContent = vals[b];
+          // cell.classList.add("hidden");
+          // append td to tr
+          row.appendChild(cell);
+      }
+      //append tr to tbody
+      tbody.appendChild(row);
+  }
+  // append tbody to table
+  table.appendChild(tbody);
+  // append table to container
+  container.appendChild(table);
+}
+
+
+var topNRoutesmarkers = [];
+
+
+// input format: ["Checkout Station","Lat","Lon","Destination Station", "lat", "lon"];
+function showtopNroutesMarkers(locations) {
+  console.log("show Markers")
+  clearMarkers()
+  const departsvgMarker = {
+    path: "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
+    fillColor: "blue",
+    fillOpacity: 0.6,
+    strokeWeight: 0,
+    rotation: 0,
+    scale: 1.5,
+    anchor: new google.maps.Point(15, 30),
+  };
+
+  const returnsvgMarker = {
+    path: "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
+    fillColor: "red",
+    fillOpacity: 0.6,
+    strokeWeight: 0,
+    rotation: 0,
+    scale: 1.5,
+    anchor: new google.maps.Point(15, 30),
+  };
+  
+  for (var i = 0; i < locations.length; i++) {
+    var loc = locations[i]
+    console.log(loc)
+    var departLoc = new google.maps.LatLng(parseFloat(loc[1]), parseFloat(loc[2]));
+    var marker = new google.maps.Marker({
+            position: departLoc,
+            map: map,
+            label: loc[0],
+            icon: departsvgMarker,
+        });
+    topNRoutesmarkers.push(marker);
+
+    var retrunLoc = new google.maps.LatLng(parseFloat(loc[4]), parseFloat(loc[5]));
+    var marker2 = new google.maps.Marker({
+            position: retrunLoc,
+            map: map,
+            label: loc[3],
+            icon: returnsvgMarker,
+        });
+    topNRoutesmarkers.push(marker2);
+  }
+}
+
+function clearMarkers() {
+  for (var i=0; i<topNRoutesmarkers.length; i++) {
+    topNRoutesmarkers[i].setMap(null);
+  }
+    
+  // Reset the markers array
+  topNRoutesmarkers = [];
+}
