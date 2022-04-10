@@ -419,6 +419,12 @@ const heatmapJsonTransform = (jsonData) => {
   heatmap.set("data", newHeatMapData);
 }
 
+// 
+// 
+// TOP N Routes 
+// 
+// 
+
 const showTopNRoutes = async () => {
     const selectedYear = document.getElementById("year").value;
     const selectedMonth = document.getElementById("month").value;
@@ -550,7 +556,6 @@ function displayTable() {
 
 var topNRoutesmarkers = [];
 
-
 // input format: ["Checkout Station","Lat","Lon","Destination Station", "lat", "lon"];
 function showtopNroutesMarkers(locations) {
   console.log("show Markers")
@@ -578,24 +583,22 @@ function showtopNroutesMarkers(locations) {
   for (var i = 0; i < locations.length; i++) {
     var loc = locations[i]
     console.log(loc)
-    var departLoc = new google.maps.LatLng(parseFloat(loc[1]), parseFloat(loc[2]));
-    var marker = new google.maps.Marker({
-            position: departLoc,
-            map: map,
-            label: loc[0],
-            icon: departsvgMarker,
-        });
-    topNRoutesmarkers.push(marker);
+    // add depart station marker
+    addMarker(loc[1], loc[2], loc[0], departsvgMarker)
+    // add return station marker
+    addMarker(loc[4], loc[5], loc[3], returnsvgMarker)
+  }
+}
 
-    var retrunLoc = new google.maps.LatLng(parseFloat(loc[4]), parseFloat(loc[5]));
-    var marker2 = new google.maps.Marker({
+function addMarker(_lat, _lon, _label, _icon ) {
+    var retrunLoc = new google.maps.LatLng(parseFloat(_lat), parseFloat(_lon));
+    var marker = new google.maps.Marker({
             position: retrunLoc,
             map: map,
-            label: loc[3],
-            icon: returnsvgMarker,
+            label: _label,
+            icon: _icon,
         });
-    topNRoutesmarkers.push(marker2);
-  }
+    topNRoutesmarkers.push(marker);
 }
 
 function clearMarkers() {
