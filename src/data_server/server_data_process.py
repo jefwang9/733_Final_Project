@@ -23,7 +23,8 @@ def get_year_files(year, month):
 class ProcessTopRoutes:
     def __init__(self, top_n):
         self.top_n = top_n
-        self.__init_dataset()
+        self.df = self.__init_dataset()
+        self.__init_geo_data()
         return
     
     def get_popular_routes(self, year: int, month: int):
@@ -34,10 +35,33 @@ class ProcessTopRoutes:
         df = self.df[(self.df["DepartureMonth"] == month) & (self.df["ReturnMonth"] == month)]
         df = df[(df["DepartureYear"] == year) & (df["ReturnYear"] == year)]
         
-        df = df.groupby(["Departure station", "Return station"]).size().reset_index(name="Count")
+        df.drop(columns=["DepartureMonth", "ReturnMonth", "DepartureYear", "ReturnYear"], inplace=True)
+        df = self.__merge_geo_data(df)
+        
+        df = df.groupby(["Departure station", "Return station", "Return lat", "Return long", "Departure lat", "Departure long"])\
+               .size()\
+               .reset_index(name="Count")
         df = df.sort_values(by="Count", ascending=False).set_index("Count")
         df = df.head(self.top_n)
         return df.to_dict()
+    
+    def __init_geo_data(self):
+        tmp = pd.read_csv(f"{p}/data/geocodings.csv")[["address", "lat", "long"]]
+        
+        # Duplicate this isn't expensive but convenient
+        self.return_geo = tmp.rename(columns={"address": "Return station",
+                                               "lat": "Return lat",
+                                               "long": "Return long"})
+        self.depart_geo = tmp.rename(columns={"address": "Departure station",
+                                              "lat": "Departure lat",
+                                              "long": "Departure long"})
+        return
+    
+    def __merge_geo_data(self, df):
+        tmp_df = pd.merge(df, self.return_geo, on="Return station", how="inner")
+        res_df = pd.merge(tmp_df, self.depart_geo, on="Departure station", how="inner")
+        
+        return res_df.dropna()
         
     def __init_dataset(self):
         dfs = []
@@ -56,7 +80,7 @@ class ProcessTopRoutes:
         df["ReturnMonth"] = df["Return"].dt.month
         df.drop(columns=["Departure", "Return"], inplace=True)
         
-        self.df = df
+        return df
     
     def __get_useful_columns(self, df):
         new_df = df[["Departure", "Return", "Departure station", "Return station"]]
