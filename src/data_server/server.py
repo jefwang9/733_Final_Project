@@ -31,7 +31,8 @@ def getdatabydate():
     """
     year = int(request.args.get('year'))
     month = int(request.args.get('month'))
-    response = jsonify(p.get_popular_routes(year, month))
+    # response = jsonify(p.get_popular_routes(year, month))
+    response = p.get_popular_routes(year, month)
     return response
 
 
