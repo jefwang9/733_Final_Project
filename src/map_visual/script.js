@@ -1,7 +1,9 @@
 // This example requires the Visualization library. Include the libraries=visualization
 // parameter when you first load the API. For example:
 {/* <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTTl046sFCnjj3T3Yx3o449cNgzn9IvTY&libraries=visualization"> */}
-let map, heatmap, directionsRenderer, directionsService, orignPoint, destinationPoint, bikeLayer, year, month ;
+let map, heatmap, directionsRenderer, directionsService, orignPoint, destinationPoint, bikeLayer, year, month, mode;
+
+var modes = ["heatmap", "topNroutes"]
 
 function initMap() {
   console.log("map")
@@ -24,15 +26,16 @@ function initMap() {
     .getElementById("toggle-activityBar")
     .addEventListener("click", toggleActivityBar);
   document
-    .getElementById("updateDataByDate")
-    .addEventListener("click", getTopRoutesByMonth);
+    .getElementById("show")
+    .addEventListener("click", show);
   document
     .getElementById("TopRoutes")
     .addEventListener("click", TopRoutes);
 }
 
 function showHeatMap() {
-  document.getElementById("currentMode").innerHTML = "Current in HeatMap"
+  document.getElementById("currentMode").innerHTML = "Current in HeatMap";
+  mode = modes[0];
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
     center: { lat: 49.28275, lng: -123.12078 },
@@ -416,6 +419,12 @@ const heatmapJsonTransform = (jsonData) => {
   heatmap.set("data", newHeatMapData);
 }
 
+// 
+// 
+// TOP N Routes 
+// 
+// 
+
 const showTopNRoutes = async () => {
     const selectedYear = document.getElementById("year").value;
     const selectedMonth = document.getElementById("month").value;
@@ -432,7 +441,8 @@ const showTopNRoutes = async () => {
 
 
 function TopRoutes() {
-  document.getElementById("currentMode").innerHTML = "Current in TopRoutes"
+  document.getElementById("currentMode").innerHTML = "Current in TopRoutes";
+  mode = modes[1];
   map = new google.maps.Map(document.getElementById("map"), {
   zoom: 13,
   center: { lat: 49.28275, lng: -123.12078 },
@@ -546,7 +556,6 @@ function displayTable() {
 
 var topNRoutesmarkers = [];
 
-
 // input format: ["Checkout Station","Lat","Lon","Destination Station", "lat", "lon"];
 function showtopNroutesMarkers(locations) {
   console.log("show Markers")
@@ -574,24 +583,22 @@ function showtopNroutesMarkers(locations) {
   for (var i = 0; i < locations.length; i++) {
     var loc = locations[i]
     console.log(loc)
-    var departLoc = new google.maps.LatLng(parseFloat(loc[1]), parseFloat(loc[2]));
-    var marker = new google.maps.Marker({
-            position: departLoc,
-            map: map,
-            label: loc[0],
-            icon: departsvgMarker,
-        });
-    topNRoutesmarkers.push(marker);
+    // add depart station marker
+    addMarker(loc[1], loc[2], loc[0], departsvgMarker)
+    // add return station marker
+    addMarker(loc[4], loc[5], loc[3], returnsvgMarker)
+  }
+}
 
-    var retrunLoc = new google.maps.LatLng(parseFloat(loc[4]), parseFloat(loc[5]));
-    var marker2 = new google.maps.Marker({
+function addMarker(_lat, _lon, _label, _icon ) {
+    var retrunLoc = new google.maps.LatLng(parseFloat(_lat), parseFloat(_lon));
+    var marker = new google.maps.Marker({
             position: retrunLoc,
             map: map,
-            label: loc[3],
-            icon: returnsvgMarker,
+            label: _label,
+            icon: _icon,
         });
-    topNRoutesmarkers.push(marker2);
-  }
+    topNRoutesmarkers.push(marker);
 }
 
 function clearMarkers() {
@@ -601,4 +608,17 @@ function clearMarkers() {
     
   // Reset the markers array
   topNRoutesmarkers = [];
+}
+
+
+function show() {
+  console.log("show")
+  if (mode == modes[0]) {
+    // heatmap
+    getheatMapdataByMonth()
+  } else if (mode == modes[1]) {
+    // top N routes
+    getTopRoutesByMonth()
+  }
+
 }
