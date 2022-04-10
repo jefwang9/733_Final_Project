@@ -1,7 +1,9 @@
 // This example requires the Visualization library. Include the libraries=visualization
 // parameter when you first load the API. For example:
 {/* <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTTl046sFCnjj3T3Yx3o449cNgzn9IvTY&libraries=visualization"> */}
-let map, heatmap, directionsRenderer, directionsService, orignPoint, destinationPoint, bikeLayer, year, month ;
+let map, heatmap, directionsRenderer, directionsService, orignPoint, destinationPoint, bikeLayer, year, month, mode;
+
+var modes = ["heatmap", "topNroutes"]
 
 function initMap() {
   console.log("map")
@@ -24,15 +26,16 @@ function initMap() {
     .getElementById("toggle-activityBar")
     .addEventListener("click", toggleActivityBar);
   document
-    .getElementById("updateDataByDate")
-    .addEventListener("click", getTopRoutesByMonth);
+    .getElementById("show")
+    .addEventListener("click", show);
   document
     .getElementById("TopRoutes")
     .addEventListener("click", TopRoutes);
 }
 
 function showHeatMap() {
-  document.getElementById("currentMode").innerHTML = "Current in HeatMap"
+  document.getElementById("currentMode").innerHTML = "Current in HeatMap";
+  mode = modes[0];
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
     center: { lat: 49.28275, lng: -123.12078 },
@@ -432,7 +435,8 @@ const showTopNRoutes = async () => {
 
 
 function TopRoutes() {
-  document.getElementById("currentMode").innerHTML = "Current in TopRoutes"
+  document.getElementById("currentMode").innerHTML = "Current in TopRoutes";
+  mode = modes[1];
   map = new google.maps.Map(document.getElementById("map"), {
   zoom: 13,
   center: { lat: 49.28275, lng: -123.12078 },
@@ -601,4 +605,17 @@ function clearMarkers() {
     
   // Reset the markers array
   topNRoutesmarkers = [];
+}
+
+
+function show() {
+  console.log("show")
+  if (mode == modes[0]) {
+    // heatmap
+    getheatMapdataByMonth()
+  } else if (mode == modes[1]) {
+    // top N routes
+    getTopRoutesByMonth()
+  }
+
 }
