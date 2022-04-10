@@ -6,26 +6,31 @@ import server_data_process as sdp
 app = Flask(__name__)
 CORS(app)
 
+print("Initializing top n routes . . .")
+print("Slow, please wait . . .")
+TOP_N_ROUTES = 10
+p = sdp.ProcessTopRoutes(TOP_N_ROUTES)
+print("Server started!")
+
+
 @app.route("/")
 def helloWorld():
-    response = jsonify({'year': 11, "month": 11})
+    """
+    Sanity check that the server is running
+    """
+    response = jsonify({'hello': 0, "world": 1})
     return response
 
-# @app.route("/api", methods = ['POST'])
-# def getdatabydate():
-#     year = request.form.get('year') 
-#     print(year)
-#     response = jsonify({'year': 11})
-#     return response
 
-
-# @app.route("/api", methods = ['GET'])
-# def getdatabydate2():
-#     year = request.args.get('year') 
-#     print(year)
-#     # response = jsonify({'year': year})
-#     response = sdp.get_year_files(2018, 11)
-#     return response
+@app.route("/api/popular_routes", methods = ['GET'])
+def getdatabydate():
+    """
+    /api/popular_routes?year=YEAR&month=MONTH
+    """
+    year = int(request.args.get('year'))
+    month = int(request.args.get('month'))
+    response = jsonify(p.get_popular_routes(year, month))
+    return response
 
 
 # /api/heatmapmonthly?year=2021&month=2
@@ -33,11 +38,10 @@ def helloWorld():
 def getheatmapData():
     year = request.args.get('year') 
     month = request.args.get('month') 
-    print(year)
-    print(month)
+    # print(year)
+    # print(month)
     response = sdp.get_year_files(year, month)
     return response
-
 
 
 if __name__ == "__main__":
