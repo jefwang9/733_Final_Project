@@ -34,6 +34,9 @@ function initMap() {
 }
 
 function showHeatMap() {
+  var container = document.getElementById('topNcontainer');
+  var tableexist = document.querySelector("table");
+  container.innerHTML = ""
   document.getElementById("currentMode").innerHTML = "Current in HeatMap";
   mode = modes[0];
   map = new google.maps.Map(document.getElementById("map"), {
@@ -114,10 +117,10 @@ function changeOpacity() {
 // Heatmap data: 500 Points
 function getPoints() {
   return [
-    {labels: "ABC", location: new google.maps.LatLng(49.262487, -123.114397), weight: 12},
-    {labels: "ABC", location: new google.maps.LatLng(49.285871, -123.12105), weight: 10},
+    // {labels: "ABC", location: new google.maps.LatLng(49.262487, -123.114397), weight: 12},
+    // {labels: "ABC", location: new google.maps.LatLng(49.285871, -123.12105), weight: 10},
     {labels: "ABC", location: new google.maps.LatLng(49.274566, -123.121817), weight: 12},
-    {location: new google.maps.LatLng(49.279764, -123.110154), weight: 34},
+    {location: new google.maps.LatLng(49.279764, -123.110154), weight: 0},
     {location: new google.maps.LatLng(49.266314, -123.116011), weight: 22},
     {location: new google.maps.LatLng(49.260599, -123.113504), weight: 5},
     {location: new google.maps.LatLng(49.264215, -123.117772), weight: 7},
@@ -344,10 +347,10 @@ function displayTable() {
 
 
 // Activity Bar Chart
-var activityBarchartdata = [
+var yearlyactivityData = [
   {
-    x: ['110th & Cambie', 'Olympic Village Station	', 'Bute & Barclay'],
-    y: [200, 140, 230],
+    x: ['2017', '2018', '2019', '2020', '2021'],
+    y: [573699, 733115, 891766, 572173, 399775],
     type: 'bar'
   }
 ];
@@ -357,9 +360,10 @@ var activityBarchartdata = [
 
 function toggleActivityBar() {
   if (document.getElementById("activityBarchart").innerHTML == "") {
-    Plotly.newPlot('activityBarchart', activityBarchartdata, {
-      title: 'Activity bar chart',
+    Plotly.newPlot('activityBarchart', yearlyactivityData, {
+      title: 'Bike Rental activity by year',
     });
+    plotformYearMonthData()
   }
   else {
     document.getElementById("activityBarchart").innerHTML = ""
@@ -367,31 +371,75 @@ function toggleActivityBar() {
 }
 
 
-
-// function updateDataByDate(){
-//   const selectedYear = document.getElementById("year").value;
-//   const selectedMonth = document.getElementById("month").value;
-//   console.log("year " + selectedYear)
-//   console.log("month " + selectedMonth)
-//   downloadFile()
-// }
+var year_month_activityData = [17077,18041,21363,32410,54370,75972,99762,98083,66674,44887,24633,20427,20394,22264,36798,42657,88511,87445,114423,111011,77489,65300,39250,27573,36756,26097,57462,58406,94432,108682,128770,136513,92304,66563,53516,32265,25119,41035,36490,30718,48746,58241,80071,87947,65432,47917,28392,22065,24736,25392,36728,50858,64516,77987,119512]
 
 
 
+function plotformYearMonthData() {
+  var trace1 = {
+    x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    y: [17077, 18041, 21363, 32410, 54370, 75972, 99762, 98083, 66674, 44887, 24633, 20427],
+    type: 'bar',
+    name: "2017"
+  };
 
+  var trace2 = {
+    x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    y: [20394, 22264, 36798, 42657, 88511, 87445, 114423, 111011, 77489, 65300, 39250, 27573],
+    type: 'bar',
+    name: "2018"
+  };
 
-const test = async () => {
-  console.log("test cors")
-  fetch('http://192.168.1.106:5000/api?year=2022', {
-    method: 'GET', 
-  })
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(err => console.log('Request Failed', err));;
+  var trace3 = {
+    x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    y: [36756, 26097, 57462, 58406, 94432, 108682, 128770, 136513, 92304, 66563, 53516, 32265],
+    type: 'bar',
+    name: "2019"
+  };
+
+  var trace4 = {
+    x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    y: [25119, 41035, 36490, 30718, 48746, 58241, 80071, 87947, 65432, 47917, 28392, 22065],
+    type: 'bar',
+    name: "2020"
+  };
+
+  var trace5 = {
+    x: [1, 2, 3, 4, 5, 6, 7],
+    y: [24736, 25392, 36728, 50858, 64516, 77987, 119512],
+    type: 'bar',
+    name: "2021"
+  };
+
+  var _data = [trace1, trace2, trace3, trace4, trace5];
+  Plotly.newPlot('monthlybar', _data);
 }
 
 
+
+
+
+// const test = async () => {
+//   console.log("test cors")
+//   fetch('http://192.168.1.106:5000/api?year=2022', {
+//     method: 'GET',
+//   })
+//   .then(response => response.json())
+//   .then(data => console.log(data))
+//   .catch(err => console.log('Request Failed', err));;
+// }
+
+
+// 
+// 
+// 
+// HeatMap
+// 
+// 
+// 
+
 const getheatMapdataByMonth = async () => {
+    showHeatMap();
     const selectedYear = document.getElementById("year").value;
     const selectedMonth = document.getElementById("month").value;
     console.log("test cors")

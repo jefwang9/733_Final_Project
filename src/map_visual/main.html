@@ -21,10 +21,10 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="btn-group-vertical" style="margin-left: 2em; position: fixed">
+                <button id="toggle-activityBar" class="btn btn-default text-left" style="width: auto">Activity Summary</button>
                 <button id="show-heatmap" class="btn btn-default text-center" style="width: auto">Activity Heatmap</button>
-                <button id="showTable" class="btn btn-default text-left" style="width: auto">Populart Routes</button>
-                <button id="toggle-activityBar" class="btn btn-default text-left" style="width: auto">Station Forecast</button>
-                <button id="TopRoutes" class="btn btn-default text-left" style="width: auto">Top 10 Active Stations</button>
+                <button id="showTable" class="btn btn-default text-left" style="width: auto"></button>
+                <button id="TopRoutes" class="btn btn-default text-left" style="width: auto">Top 10 Active Stations</button> 
             </div>
         </div>
         <div class="col-sm-9">
@@ -79,11 +79,19 @@
             <div id="topNcontainer" style="padding:1em"></div>
             <div style="padding:1em">
                 <!-- <h5 id="activityBarchartTitle"></h5> -->
-                <div id='activityBarchart'>
-                    <!-- Plotly chart will be drawn inside this DIV -->
+                <div class="row">
+                    <div class="col-sm-2">
+                    </div>
+                    <div id='activityBarchart' class="col-sm-5">
+                        <!-- Plotly chart will be drawn inside this DIV -->
+                    </div>
+                    <div class="col-sm-4">
+                    </div>
                 </div>
             </div>
-            
+            <div class="row" id='monthlybar'>
+            </div>
+              
         </div>
         <!-- <div class="col-sm-4">.col-sm-4</div> -->
     </div>
