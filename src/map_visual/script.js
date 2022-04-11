@@ -449,14 +449,21 @@ function plotformHourlyData() {
     _x.push(i)
   }
 
+  var _trace1 = {
+    x: _x,
+    y: [18631,8276,3889,2375,2279,5573,23251,56803,145823,164476,96923,93589,121684,134624,135230,147558,180560,251080,236818,173363,122527,89145,58954,36112],
+    type: 'scatter',
+    name: "Weekday"
+  };
 
-  var _data = [
-    {
-      x: _x,
-      y: [32458,17067,9087,5560,3974,7085,26322,63308,159345,187861,134782,145437,185247,207394,215401,232540,264724,328368,302543,227302,162930,119293,80246,52254],
-      type: 'scatter'
-    }
-  ];
+  var _trace2 = {
+    x: _x,
+    y: [13827,8791,5198,3185,1695,1512,3071,6505,13522,23385,37859,51848,63563,72770,80171,84982,84164,77288,65725,53939,40403,30148,21292,16142],
+    type: 'scatter',
+    name: "Weekend"
+  };
+  var _data = [_trace1, _trace2]
+
 
   var _layout = {
     title: 'Hourly activities',
@@ -474,15 +481,7 @@ function plotformHourlyData() {
   Plotly.newPlot('hourlyChart', _data, _layout);
 }
 
-// const test = async () => {
-//   console.log("test cors")
-//   fetch('http://192.168.1.106:5000/api?year=2022', {
-//     method: 'GET',
-//   })
-//   .then(response => response.json())
-//   .then(data => console.log(data))
-//   .catch(err => console.log('Request Failed', err));;
-// }
+
 
 
 // 
