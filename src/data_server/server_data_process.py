@@ -44,7 +44,7 @@ class ProcessTopRoutes:
         df = df.sort_values(by="Count", ascending=False).set_index("Count")
         df = df.head(self.top_n)
         # return df.to_dict()
-        return df.to_json(orient='index')
+        return df.to_json(orient='records')
 
     
     def __init_geo_data(self):
