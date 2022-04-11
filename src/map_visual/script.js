@@ -363,7 +363,9 @@ function toggleActivityBar() {
     Plotly.newPlot('activityBarchart', yearlyactivityData, {
       title: 'Bike Rental activity by year',
     });
-    plotformYearMonthData()
+    plotformYearMonthData();
+    plotformWeekdayData();
+    plotformHourlyData();
   }
   else {
     document.getElementById("activityBarchart").innerHTML = ""
@@ -416,8 +418,61 @@ function plotformYearMonthData() {
 }
 
 
+function plotformWeekdayData() {
+  var _data = [
+    {
+      x: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      y: [447719, 470528, 465583, 461000, 464713, 451515, 409470],
+      type: 'scatter'
+    }
+  ];
+
+  var _layout = {
+    title: 'Activities of weekdays',
+    xaxis: {
+      range: ['Monday', 'Sunday'],
+      type: 'string'
+    },
+    yaxis: {
+        autorange: false,
+        range: [0, 500000],
+        type: 'linear'
+      }
+  };
+
+  Plotly.newPlot('weekdayChart', _data, _layout);
+}
+
+function plotformHourlyData() {
+  var _x = []
+  for (var i = 0; i < 24; i++) {
+    _x.push(i)
+  }
 
 
+  var _data = [
+    {
+      x: _x,
+      y: [32458,17067,9087,5560,3974,7085,26322,63308,159345,187861,134782,145437,185247,207394,215401,232540,264724,328368,302543,227302,162930,119293,80246,52254],
+      type: 'scatter'
+    }
+  ];
+
+  var _layout = {
+    title: 'Hourly activities',
+    // xaxis: {
+    //   range: [0,],
+    //   type: 'string'
+    // },
+    yaxis: {
+        autorange: true,
+        range: [0, 40000],
+        type: 'linear'
+      }
+  };
+
+  Plotly.newPlot('hourlyChart', _data, _layout);
+}
 
 // const test = async () => {
 //   console.log("test cors")
