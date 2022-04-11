@@ -68,7 +68,7 @@
                     </select>
                 </div>
                 
-                <button id="toggle-BikeLane" class="btn btn-default text-left col-sm-2"><b>Show BikeLane</b></button>
+                <button id="toggle-BikeLane" class="btn btn-default text-left col-sm-2"><b></b></button>
             </div>
 
             <div style="padding:1em">
@@ -80,12 +80,14 @@
             <div style="padding:1em">
                 <!-- <h5 id="activityBarchartTitle"></h5> -->
                 <div class="row">
-                    <div class="col-sm-2">
-                    </div>
-                    <div id='activityBarchart' class="col-sm-5">
+                    <div id='activityBarchart' class="col-sm-4">
                         <!-- Plotly chart will be drawn inside this DIV -->
                     </div>
-                    <div class="col-sm-4">
+                    <div id='weekdayChart' class="col-sm-4">
+                        <!-- Plotly chart will be drawn inside this DIV -->
+                    </div>
+                    <div id='hourlyChart' class="col-sm-4">
+                        <!-- Plotly chart will be drawn inside this DIV -->
                     </div>
                 </div>
             </div>
@@ -98,7 +100,7 @@
 
     
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script async src="https://maps.googleapis.com/maps/api/js?key=API&libraries=visualization&callback=initMap">
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATp1HtDm-Lg2r0RoLOLTPuLxMvN0BqKos&libraries=visualization&callback=initMap">
     </script>
 
 
