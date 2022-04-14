@@ -11,7 +11,7 @@ CORS(app)
 print("Initializing top n routes . . .")
 print("Slow, please wait . . .")
 TOP_N_ROUTES = 10
-p = sdp.ProcessTopRoutes(TOP_N_ROUTES)
+# p = sdp.ProcessTopRoutes(TOP_N_ROUTES)
 print("Server started!")
 
 
@@ -44,6 +44,24 @@ def getheatmapData():
     # print(year)
     # print(month)
     response = sdp.get_year_files(year, month)
+    return response
+
+
+# /api/demandForecast?time=Morning
+@app.route("/api/demandForecast", methods = ['GET'])
+def getdemandForecast():
+    timeframe = str(request.args.get('time')).lower()
+    print("working")
+    # df = sdp.get_forecast_db()
+    print(timeframe)
+
+    response = sdp.get_demand_forecast(timeframe)
+    return response
+
+
+@app.route("/api/cluster", methods = ['GET'])
+def getCluster():
+    response = sdp.getCluster()
     return response
 
 

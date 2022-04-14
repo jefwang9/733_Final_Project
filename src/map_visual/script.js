@@ -31,6 +31,16 @@ function initMap() {
   document
     .getElementById("TopRoutes")
     .addEventListener("click", TopRoutes);
+  document
+    .getElementById("demandForecast")
+    .addEventListener("click", demandForecast)
+  document
+    .getElementById("forecastshow")
+    .addEventListener("click", forecastshow)
+  document
+    .getElementById("cluster")
+    .addEventListener("click", showCluster)
+  
 }
 
 function showHeatMap() {
@@ -658,10 +668,13 @@ function displayTable() {
 
 var topNRoutesmarkers = [];
 
+
+
 // input format: ["Checkout Station","Lat","Lon","Destination Station", "lat", "lon"];
 function showtopNroutesMarkers(locations) {
   console.log("show Markers")
   clearMarkers()
+
   const departsvgMarker = {
     path: "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
     fillColor: "blue",
@@ -723,4 +736,177 @@ function show() {
     getTopRoutesByMonth()
   }
 
+}
+
+
+// Demand Forecast
+function demandForecast() {
+  document.getElementById("currentMode").innerHTML = "Current in Demand Forecast";
+  // getdemandForecast()
+}
+
+const getdemandForecast = async () => {
+  const selecteTime = document.getElementById("Forecastmode").value;
+    console.log("test cors")
+    let url = "http://192.168.1.106:5000/api/demandForecast?time=" + String(selecteTime)
+    console.log(url)
+    fetch(url, {
+        method: 'GET', 
+    })
+    .then(response => response.json())
+      // .then(data => console.log(data))
+      .then(data => DemandForecastTransform(data))
+    .catch(err => console.log('Request Failed', err));
+}
+
+
+function forecastshow() {
+  getdemandForecast()
+}
+
+const DemandForecastTransform = (jsonData) => {
+  forecastArray = []
+  for (let [key, value] of Object.entries(jsonData)) {
+    // console.log(value)
+    forecast = []
+    station = value["station"]
+    lat = value["lat"]
+    long = value["long"]
+    label = value["label"]
+    forecast.push(String(station))
+    forecast.push(String(lat))
+    forecast.push(String(long))
+    forecast.push(String(label))
+    forecastArray.push(forecast)
+  }
+  // console.log(route)
+  showDemandMarkers(forecastArray)
+}
+
+function showDemandMarkers(locations) {
+  console.log("show Markers")
+  clearMarkers()
+
+  const departsvgMarker = {
+    path: "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
+    fillColor: "blue",
+    fillOpacity: 0.6,
+    strokeWeight: 0,
+    rotation: 0,
+    scale: 1.5,
+    anchor: new google.maps.Point(15, 30),
+  };
+
+  const returnsvgMarker = {
+    path: "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
+    fillColor: "red",
+    fillOpacity: 0.6,
+    strokeWeight: 0,
+    rotation: 0,
+    scale: 1.5,
+    anchor: new google.maps.Point(15, 30),
+  };
+  
+  for (var i = 0; i < locations.length; i++) {
+    var loc = locations[i]
+    console.log(loc)
+    if (loc[3] == 1) {
+     // add depart station marker
+      addMarker(loc[1], loc[2], "", departsvgMarker)
+    } else {
+      // add return station marker
+      addMarker(loc[1], loc[2], "", returnsvgMarker)
+    }
+  }
+}
+
+
+// Cluster
+
+function showCluster() {
+  document.getElementById("currentMode").innerHTML = "Current in station cluster";
+  getCluster()
+} 
+
+const getCluster = async () => {
+    console.log("test cors")
+    let url = "http://192.168.1.106:5000/api/cluster"
+    console.log(url)
+    fetch(url, {
+        method: 'GET', 
+    })
+    .then(response => response.json())
+      // .then(data => console.log(data))
+    .then(data => clusterTransform(data))
+    .catch(err => console.log('Request Failed', err));
+}
+
+function clusterTransform(jsonData) {
+  console.log("transform")
+  clusterArray = []
+  for (let [key, value] of Object.entries(jsonData)) {
+    // console.log(value)
+    cluster = []
+    station = value["Return station"]
+    lat = value["return_lat"]
+    long = value["return_long"]
+    label = value["label"]
+    cluster.push(String(station))
+    cluster.push(String(lat))
+    cluster.push(String(long))
+    cluster.push(String(label))
+    clusterArray.push(cluster)
+  }
+  // console.log(clusterArray)
+  showClusterMarkers(clusterArray)
+}
+
+function showClusterMarkers(locations) {
+  console.log("show Markers")
+  clearMarkers()
+
+  const c1Marker = {
+    path: "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
+    fillColor: "blue",
+    fillOpacity: 0.6,
+    strokeWeight: 0,
+    rotation: 0,
+    scale: 1.5,
+    anchor: new google.maps.Point(15, 30),
+  };
+
+  const c2Marker = {
+    path: "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
+    fillColor: "red",
+    fillOpacity: 0.6,
+    strokeWeight: 0,
+    rotation: 0,
+    scale: 1.5,
+    anchor: new google.maps.Point(15, 30),
+  };
+
+  const c3Marker = {
+    path: "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
+    fillColor: "yellow",
+    fillOpacity: 0.6,
+    strokeWeight: 0,
+    rotation: 0,
+    scale: 1.5,
+    anchor: new google.maps.Point(15, 30),
+  };
+  
+  for (var i = 0; i < locations.length; i++) {
+    var loc = locations[i]
+    console.log(loc)
+    if (loc[3] == 0) {
+     // add depart station marker
+      addMarker(loc[1], loc[2], "", c1Marker)
+    } else if (loc[3] == 1){
+      // add return station marker
+      addMarker(loc[1], loc[2], "", c2Marker)
+    } else{
+      // add return station marker
+      addMarker(loc[1], loc[2], "", c3Marker)
+    }
+  }
 }

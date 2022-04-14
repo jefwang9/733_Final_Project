@@ -1,4 +1,5 @@
 import os
+from time import time
 import pandas as pd
 from pathlib import Path
 import json
@@ -19,6 +20,21 @@ def get_year_files(year, month):
     # print(data)
     return data
 
+def get_demand_forecast(timeframe):
+    t = timeframe
+    print(t)
+    tmp = pd.read_csv(f"{p}/data/predict.csv")[["station", "lat", "long", "label", "Afternoon", "Evening", "Morning"]]
+    if t == "morning":
+        return tmp.where(tmp["Morning"] == 1).dropna().to_json(orient='records')
+    elif t == "afternoon":
+        return tmp.where(tmp["Afternoon"] == 1).dropna().to_json(orient='records')
+    else:
+        return tmp.where(tmp["Evening"] == 1).dropna().to_json(orient='records')
+
+def getCluster():
+    p2 = Path(path).parents[0]
+    df_cluster = pd.read_csv(f"{p2}/station_clustering_2020.csv")[["return_lat", "return_long", "Return station", "label"]]
+    return df_cluster.to_json(orient='records')
 
 class ProcessTopRoutes:
     def __init__(self, top_n):

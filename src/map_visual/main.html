@@ -25,6 +25,8 @@
                 <button id="show-heatmap" class="btn btn-default text-center" style="width: auto">Activity Heatmap</button>
                 <button id="showTable" class="btn btn-default text-left" style="width: auto"></button>
                 <button id="TopRoutes" class="btn btn-default text-left" style="width: auto">Top 10 Active Stations</button> 
+                <button id="demandForecast" class="btn btn-default text-left" style="width: auto">Demand Forecast</button>
+                <button id="cluster" class="btn btn-default text-left" style="width: auto">Station Cluster</button>
             </div>
         </div>
         <div class="col-sm-9">
@@ -92,6 +94,20 @@
                 </div>
             </div>
             <div class="row" id='monthlybar'>
+            </div>
+
+            <div id="demandforecastContainer">
+                <div id="floating-forecast_panel" class="col-sm-3" style="padding: .375rem .75rem">
+                    <b>Mode of Travel: </b>
+                    <select id="Forecastmode">
+                        <option value="Morning">Morning</option>
+                        <option value="Afternoon">Afternoon</option>
+                        <option value="Evening">Evening</option>
+                    </select>
+                    <button id="forecastshow" ><b>Show</b></button>
+                </div>
+                <p>Blue Flag: need remove bike</p>
+                <p>Red Flag: need more bike</p>
             </div>
               
         </div>
