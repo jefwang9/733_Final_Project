@@ -16,6 +16,7 @@ The Flask data server needs to be running in order for the front-end to gather d
 
 - cd /src/data_server
 - python ./server.py
+- Replace the API in googleapis script in main.html file
 - use chrome open: src/map_visual/main.html
 
 ### Machine learning models
