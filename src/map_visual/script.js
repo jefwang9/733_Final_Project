@@ -743,6 +743,18 @@ function show() {
 function demandForecast() {
   document.getElementById("currentMode").innerHTML = "Current in Demand Forecast";
   // getdemandForecast()
+  map = new google.maps.Map(document.getElementById("map"), {
+  zoom: 13,
+  center: { lat: 49.28275, lng: -123.12078 },
+  styles: [ 
+    { 
+      "featureType": "poi", 
+      "stylers": [ 
+        { "visibility": "off" } 
+      ] 
+    } 
+  ] 
+  });
 }
 
 const getdemandForecast = async () => {
@@ -825,6 +837,18 @@ function showDemandMarkers(locations) {
 
 function showCluster() {
   document.getElementById("currentMode").innerHTML = "Current in station cluster";
+  map = new google.maps.Map(document.getElementById("map"), {
+  zoom: 13,
+  center: { lat: 49.28275, lng: -123.12078 },
+  styles: [ 
+    { 
+      "featureType": "poi", 
+      "stylers": [ 
+        { "visibility": "off" } 
+      ] 
+    } 
+  ] 
+  });
   getCluster()
 } 
 

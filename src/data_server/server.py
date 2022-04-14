@@ -11,7 +11,7 @@ CORS(app)
 print("Initializing top n routes . . .")
 print("Slow, please wait . . .")
 TOP_N_ROUTES = 10
-# p = sdp.ProcessTopRoutes(TOP_N_ROUTES)
+p = sdp.ProcessTopRoutes(TOP_N_ROUTES)
 print("Server started!")
 
 
