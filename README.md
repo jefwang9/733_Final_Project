@@ -59,6 +59,7 @@ Some temporary files and folders are omitted for they are not relevant in unders
     │ │ └── ... 
     │ │
     │ ├── kmeans.ipynb
+    │ ├── lstm.ipynb # The LSTM model, not finished yet
     │ ├── regression_model_2020.ipynb # The regression model
     │ └── xgb_model_2020.ipynb # The classification model
     │
