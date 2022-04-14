@@ -379,6 +379,9 @@ function toggleActivityBar() {
   }
   else {
     document.getElementById("activityBarchart").innerHTML = ""
+    document.getElementById("weekdayChart").innerHTML = ""
+    document.getElementById("hourlyChart").innerHTML = ""
+    document.getElementById("monthlybar").innerHTML = ""
   }
 }
 
@@ -742,6 +745,12 @@ function show() {
 // Demand Forecast
 function demandForecast() {
   document.getElementById("currentMode").innerHTML = "Current in Demand Forecast";
+  var x = document.getElementById("demandforecastContainer");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
   // getdemandForecast()
   map = new google.maps.Map(document.getElementById("map"), {
   zoom: 13,
@@ -759,7 +768,7 @@ function demandForecast() {
 
 const getdemandForecast = async () => {
   const selecteTime = document.getElementById("Forecastmode").value;
-    console.log("test cors")
+  console.log("test cors")
     let url = "http://192.168.1.106:5000/api/demandForecast?time=" + String(selecteTime)
     console.log(url)
     fetch(url, {
