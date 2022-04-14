@@ -8,6 +8,8 @@ Welcome to group CWJY's term project repository!
 
 We have built data pipelines in folder ```src/data_prep/``` and stored all the relevant transformed datasets in CSV format in the ```data/``` directory. While we will dive deep into our decision of not using a database in our report, this makes running the data pipeline a one-time process. Please take a look at the file structure below if you're more interested in running the pipeline yourself.
 
+**Sepcial note:** in order to save space and make more sense as a data storate, the processed Mobibikes annual datasets are compressed. Opening the datasets requires ```pd.read_csv(file_path, compression="zip")```, assuming pandas is used.
+
 The Flask data server needs to be running in order for the front-end to gather data, though. Please simply verify that you have all the dependencies listed in the later section, and call ```python3 src/data_server/server.py &```. The server will initially prime and load some datasets it uses, and then run quietly in background. 
 
 ### Front-end host
