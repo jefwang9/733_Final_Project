@@ -14,7 +14,9 @@ The Flask data server needs to be running in order for the front-end to gather d
 
 ### Front-end host
 
-TODO
+- cd /src/data_server
+- python ./server.py
+- use chrome open: src/map_visual/main.html
 
 ### Machine learning models
 
@@ -79,13 +81,6 @@ Some temporary files and folders are omitted for they are not relevant in unders
 - pyproj.Geod # for transforming geometric coordinates to distance
 - flask
 - flask_cors
-
-### Front-end host
-
-- cd /src/data_server
-
-- python ./server.py
-- use chrome open: src/map_visual/main.html
 
 ### Back-end machine learning models
 
