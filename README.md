@@ -85,7 +85,7 @@ Some temporary files and folders are omitted for they are not relevant in unders
 - cd /src/data_server
 
 - python ./server.py
-  -use chrome open: src/map_visual/main.html
+- use chrome open: src/map_visual/main.html
 
 ### Back-end machine learning models
 
