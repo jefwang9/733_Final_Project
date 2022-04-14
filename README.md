@@ -16,7 +16,7 @@ The Flask data server needs to be running in order for the front-end to gather d
 TODO
 
 ### Machine learning models
-TODO
+We build two models, the regression model is in ```src/regression_model_2020.ipynb``` and classifier model is in ```src/xgb_model_2020.ipynb```. The regression model can be run directly. To run classifier model, first we ned to run ```src/data_prep/train_data_preprocess.ipynb``` to create ```data/data_2020_merged_xgbClassify.csv``` and ```data/2021_test.csv```, which are our training and testing data. Both two file have a sample prediction and will be saved in ```data/predict.csv```.
 
 ## File structure
 
@@ -31,6 +31,8 @@ Some temporary files and folders are omitted for they are not relevant in unders
     │ ├── . . . 
     │ ├── Mobi_System_Data_2021.csv
     │ ├── not_found_stations.txt # small number of stations not found during geocoding
+    │ ├── predict.csv # Predictions from the model
+    │ ├── stations.csv # Features needed for all stations
     │ └── TODO
     │
     ├── src/ # all source files reside here
@@ -40,7 +42,8 @@ Some temporary files and folders are omitted for they are not relevant in unders
     │ │ ├── data_merger.ipynb
     │ │ ├── geocoding_getter.py 
     │ │ ├── data_cleaning.py
-    │ │ ├── TODO 
+    │ │ ├── stations_lookup.ipynb # Collect all needed information for each station
+    │ │ ├── train_data_preprocess.ipynb # Generate training and testing data for classifier
     │ │ └── ... 
     │ │
     │ ├── map_visual/
@@ -56,7 +59,8 @@ Some temporary files and folders are omitted for they are not relevant in unders
     │ │ └── ... 
     │ │
     │ ├── kmeans.ipynb
-    │ └── model.ipynb
+    │ ├── regression_model_2020.ipynb # The regression model
+    │ └── xgb_model_2020.ipynb # The classification model
     │
     └── README.md # this file you're reading :)
 
@@ -76,4 +80,9 @@ Some temporary files and folders are omitted for they are not relevant in unders
 TODO
 
 ### Back-end machine learning models
-TODO
+- Pandas
+- Matplotlib
+- Seaborn
+- Torch
+- Numpy
+- XGBoost
