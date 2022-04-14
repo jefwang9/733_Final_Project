@@ -82,7 +82,7 @@ Some temporary files and folders are omitted for they are not relevant in unders
 
 ### Front-end host
 
--cd /src/data_server
+- cd /src/data_server
 
 - python ./server.py
   -use chrome open: src/map_visual/main.html
