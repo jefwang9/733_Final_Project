@@ -17,7 +17,7 @@ The Flask data server needs to be running in order for the front-end to gather d
 - cd /src/data_server
 - python ./server.py
 - Replace the API in googleapis script in main.html file
-- use chrome open: src/map_visual/main.html
+- Use chrome open: src/map_visual/main.html
 
 ### Machine learning models
 
@@ -80,8 +80,7 @@ Some temporary files and folders are omitted for they are not relevant in unders
 - Numpy
 - Pandas
 - pyproj.Geod # for transforming geometric coordinates to distance
-- flask
-- flask_cors
+- Flask_cors
 
 ### Back-end machine learning models
 
