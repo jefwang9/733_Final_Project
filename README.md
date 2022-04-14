@@ -1,4 +1,5 @@
 # 733_Final_Project
+
 SFU CMPT733_Final_Project
 
 ## File structure
@@ -23,8 +24,8 @@ SFU CMPT733_Final_Project
     │ │ ├── mobi_crawler.py
     │ │ ├── google_drive_downloader.py
     │ │ ├── data_merger.ipynb
-    │ │ ├── geocoding_getter.py 
-    │ │ └── ... 
+    │ │ ├── geocoding_getter.py
+    │ │ └── ...
     │ ├── map_visual
     │ │ ├── main.html # Webpage
     │ │ ├── script.js # Webpage script
@@ -34,12 +35,27 @@ SFU CMPT733_Final_Project
     │ └── model.ipynb
     └── README.md
 
-
 ## Dependencies
 
 ### Data preparation
+
 - Beautiful Soup
-- Google Maps (pip package: ```googlemaps```)
+- Google Maps (pip package: `googlemaps`)
 - Numpy
 - Pandas
 - Built-in packages: pickle, re, requests
+
+## Server
+
+- flask_cors
+- flask
+- pandas
+- pathlib
+
+## Front End web display
+
+    Set up server
+    - cd src/data_server
+    - python ./server.py
+    Open webpage:
+    - use chrome to open: src/map_visual/main.html
