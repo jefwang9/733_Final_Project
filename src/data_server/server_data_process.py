@@ -31,6 +31,10 @@ def get_demand_forecast(timeframe):
     else:
         return tmp.where(tmp["Evening"] == 1).dropna().to_json(orient='records')
 
+def getCluster():
+    p2 = Path(path).parents[0]
+    df_cluster = pd.read_csv(f"{p2}/station_clustering_2020.csv")[["return_lat", "return_long", "Return station", "label"]]
+    return df_cluster.to_json(orient='records')
 
 class ProcessTopRoutes:
     def __init__(self, top_n):

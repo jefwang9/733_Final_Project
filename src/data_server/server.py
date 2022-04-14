@@ -11,7 +11,7 @@ CORS(app)
 print("Initializing top n routes . . .")
 print("Slow, please wait . . .")
 TOP_N_ROUTES = 10
-p = sdp.ProcessTopRoutes(TOP_N_ROUTES)
+# p = sdp.ProcessTopRoutes(TOP_N_ROUTES)
 print("Server started!")
 
 
@@ -57,6 +57,13 @@ def getdemandForecast():
 
     response = sdp.get_demand_forecast(timeframe)
     return response
+
+
+@app.route("/api/cluster", methods = ['GET'])
+def getCluster():
+    response = sdp.getCluster()
+    return response
+
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
