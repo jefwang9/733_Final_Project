@@ -37,8 +37,7 @@ Some temporary files and folders are omitted for they are not relevant in unders
     │ ├── Mobi_System_Data_2021.csv
     │ ├── not_found_stations.txt # small number of stations not found during geocoding
     │ ├── predict.csv # Predictions from the model
-    │ ├── stations.csv # Features needed for all stations
-    │ └── TODO
+    │ └── stations.csv # Features needed for all stations
     │
     ├── src/ # all source files reside here
     │ ├── data_prep/ # subtroutines in the data ETL pipeline
